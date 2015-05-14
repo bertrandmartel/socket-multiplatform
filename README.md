@@ -1,4 +1,4 @@
-# Multi-platform Socket connection implementations
+# Multi-platform Socket connection implementations (In construction)
 
 
 This project will features socket connection implementation on multiple platforms and frameworks :
