@@ -6,43 +6,25 @@ This project will features socket connection implementation on multiple platform
 <table>
     <tr>
         <td colspan="6"></td>
-        <td colspan="2">java</td>
-        <td colspan="2">java spring v4.1</td>
-        <td colspan="2">js (browser)</td>
-        <td colspan="2">c++ qt4</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td colspan="2"><b>Java</b></td>
+        <td colspan="2"><b>Java spring v4.1</b></td>
+        <td colspan="2"><b>JS (browser)</b></td>
+        <td colspan="2"><b>C++ qt4</b></td>
     </tr>
     <tr>
-        <td colspan="2" rowspan="4">server<div>socket</td>
+        <td colspan="2" rowspan="4">Server socket</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no-ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2" rowspan="8"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2" rowspan="2">non-blocking</td>
@@ -50,50 +32,26 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
-        <td colspan="2" rowspan="4">server<div>websocket</td>
+        <td colspan="2" rowspan="4">Server websocket</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no-ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2" rowspan="2">non-blocking</td>
@@ -101,38 +59,20 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
-        <td colspan="4" rowspan="2">client socket</td>
+        <td colspan="4" rowspan="2">Client socket</td>
         <td colspan="2">no-ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
@@ -140,26 +80,14 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
-        <td colspan="4" rowspan="2">client websocket</td>
+        <td colspan="4" rowspan="2">Client websocket</td>
         <td colspan="2">no-ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
@@ -167,11 +95,5 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
 </table>
