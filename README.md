@@ -8,7 +8,7 @@ This project will features socket connection implementation on multiple platform
         <td colspan="6"></td>
         <td colspan="2"><b>Java</b></td>
         <td colspan="2"><b>Java spring v4.1</b></td>
-        <td colspan="2"><b>JS (browser)</b></td>
+        <td colspan="2"><b>JS browser</b></td>
         <td colspan="2"><b>C++ qt4</b></td>
     </tr>
     <tr>
