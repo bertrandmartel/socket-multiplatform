@@ -43,7 +43,7 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2" rowspan="4">Server websocket</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no-ssl</td>
-        <td colspan="2">![OK](images/OK.png)</td>
+        <td colspan="2"><img src="./images/OK.png"/></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
     </tr>
@@ -71,14 +71,14 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2">no-ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td colspan="2"></td>
+        <td colspan="2" rowspan="2"></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td colspan="2"></td>
+    
         <td colspan="2"></td>
     </tr>
     <tr>
@@ -86,7 +86,7 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2">no-ssl</td>
         <td colspan="2"></td>
         <td colspan="2"></td>
-        <td colspan="2"></td>
+        <td colspan="2"><img src="./images/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
