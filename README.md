@@ -43,7 +43,7 @@ This project will features socket connection implementation on multiple platform
     </tr>
     <tr>
         <td colspan="2">ssl</td>
-        <td colspan="2"></td>
+        <td colspan="2"><img src="./images/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
