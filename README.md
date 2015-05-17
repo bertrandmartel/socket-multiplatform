@@ -321,7 +321,7 @@ This exemple is launched from /release folder
 * Launch the HTTP server on port 8443
 * On your browser go to url http://127.0.0.1:8443/index
 
-![client side](./server/server-socket/non-blocking/no-ssl/java/readme_images/clientSide.png)
+![client side](https://raw.github.com/akinaru/socket-multiplatform/master/server/server-socket/non-blocking/no-ssl/java/readme_images/clientSide.png)
 
 <hr/>
 
