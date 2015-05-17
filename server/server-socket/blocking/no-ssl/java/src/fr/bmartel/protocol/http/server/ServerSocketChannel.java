@@ -99,7 +99,6 @@ public class ServerSocketChannel implements Runnable, IHttpStream {
 	public void run() {
 		try {
 
-			/* clear richRequest object (specially headers) */
 			this.httpFrameParser = new HttpFrame();
 
 			HttpStates httpStates = this.httpFrameParser.parseHttp(inputStream);
