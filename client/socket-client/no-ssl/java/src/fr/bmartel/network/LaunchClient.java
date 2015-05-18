@@ -77,8 +77,8 @@ public class LaunchClient {
 
 	private final static String KEYSTORE_DEFAULT_TYPE = "PKCS12";
 	private final static String TRUSTORE_DEFAULT_TYPE = "JKS";
-	private final static String KEYSTORE_FILE_PATH = "/home/abathur/Bureau/open_source/socket-multiplatform/client/socket-client/ssl/java/certs/server/server.p12";
-	private final static String TRUSTORE_FILE_PATH = "/home/abathur/Bureau/open_source/socket-multiplatform/client/socket-client/ssl/java/certs/ca.jks";
+	private final static String KEYSTORE_FILE_PATH = "~/socket-multiplatform/client/socket-client/ssl/java/certs/client/client.p12";
+	private final static String TRUSTORE_FILE_PATH = "~/socket-multiplatform/client/socket-client/ssl/java/certs/ca.jks";
 	private final static String SSL_PROTOCOL = "TLS";
 	private final static String KEYSTORE_PASSWORD = "123456";
 	private final static String TRUSTORE_PASSWORD = "123456";
