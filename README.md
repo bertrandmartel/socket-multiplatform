@@ -251,7 +251,8 @@ This is the same as above but we add some SSL flavor to this :
 
 Build an instance of client socket for later connection to server on HOSTNAME:PORT
 
-``ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);
+```
+ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);
 
 //set SSL encryption
 clientSocket.setSsl(true);
