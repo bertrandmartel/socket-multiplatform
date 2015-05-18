@@ -248,9 +248,8 @@ public class ClientSocket implements IClientSocket {
 									.getInputStream());
 
 							for (int i = 0; i < clientListenerList.size(); i++) {
-								clientListenerList.get(i)
-										.onIncomingHttpFrame(frame, httpStates,
-												ClientSocket.this);
+								clientListenerList.get(i).onIncomingHttpFrame(
+										frame, httpStates, ClientSocket.this);
 							}
 
 							if (httpStates == HttpStates.HTTP_READING_ERROR) {

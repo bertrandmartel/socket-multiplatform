@@ -179,7 +179,7 @@ server.setSsl(true); // set SSL to true (default is false)
 
 ```
 
-Then you set your kestore, trustore, type of these certificates, filepath and passwords : 
+Then you set your keystore, trustore, type of these certificates, filepath and passwords : 
 
 ```
 server.setSSLParams(String KEYSTORE_DEFAULT_TYPE,
@@ -205,6 +205,80 @@ Eventually add event listener as described above and start HTTP server :
 ```
 server.start();
 ```
+
+<hr/>
+
+<b> Build/Connect a Java client socket</b>
+
+Build an instance of client socket for later connection to server on HOSTNAME:PORT
+
+``ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);```
+
+Add a client event listener to be notified when incoming http arrives from the server
+
+```
+clientSocket.addClientSocketEventListener(new IHttpClientListener() {
+
+            @Override
+            public void onIncomingHttpFrame(HttpFrame frame,
+                    HttpStates httpStates, IClientSocket clientSocket) {
+
+                //here test if http frame decoding is fine
+                if (httpStates == HttpStates.HTTP_FRAME_OK && frame.isHttpResponseFrame()) {
+
+                    //manage your response from the server or what you want
+
+                }
+            }
+        });
+```
+
+You can write request to server with ``write(byte[] data)`` method :
+
+```clientSocket.write("GET /say_hello HTTP/1.1\r\n\r\n".getBytes("UTF-8"));```
+
+You can use http-endec library to build http frame request or response to be sent to the server : http://akinaru.github.io/http-endec-java/
+
+The ``write(byte[] data)`` method will automatically connect to the server and send your http frame data direclty. A reading thread will be created on the fly and response from the server will be received there and dispatch to your client event listener, you have declared above.
+
+Depending on your server implementation, client connection will be closed immediatly after http frame processing from the server. Reading thread will die shortly when no data remains to be read from the server socket.
+
+<hr/>
+
+<b> Build/Connect a Java SSL client socket</b>
+
+This is the same as above but we add some SSL flavor to this : 
+
+Build an instance of client socket for later connection to server on HOSTNAME:PORT
+
+``ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);
+
+//set SSL encryption
+clientSocket.setSsl(true);
+
+```
+
+Then you set your keystore, trustore, type of these certificates, filepath and passwords : 
+
+```
+clientSocket.setSSLParams(KEYSTORE_DEFAULT_TYPE, TRUSTORE_DEFAULT_TYPE,
+        KEYSTORE_FILE_PATH, TRUSTORE_FILE_PATH, SSL_PROTOCOL,
+        KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
+
+```
+
+Here is the description of all of these parameters : 
+
+* KEYSTORE_DEFAULT_TYPE : type of certificates used as keystore, it usually contains public and private certificates, common format are PKCS12 and JKS
+* TRUSTORE_DEFAULT_TYPE : type of certificates used as trustore, it should contain list of CA cert your client will trust
+* KEYSTORE_FILE_PATH : file path to keystore cert file
+* TRUSTORE_FILE_PATH: file path to trustore cert file
+* SSL_PROTOCOL : ssl protocol used 
+* KEYSTORE_PASSWORD : keystore file password
+* TRUSTORE_PASSWORD : trustore file password
+
+Later, when you will write http frames to your client socket, all your data will be encrypted according to your SSL settings
+
 
 <hr/>
 
@@ -316,12 +390,26 @@ This exemple is launched from /release folder
 
 <hr/>
 
-<b>Exemple with Browser HTTP client</b>
+<b>Java HTTP server : Exemple with Browser HTTP client</b>
+
+This exemple is located in server/server-socket/blocking/no-ssl/java or server/server-socket/blocking/ssl/java
 
 * Launch the HTTP server on port 8443
 * On your browser go to url http://127.0.0.1:8443/index
 
 ![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSide.png)
+
+<b>Java HTTP client : Exemple with Java socket server <-> Java socket client</b>
+
+This exemple is located in client/socket-client/no-ssl/java or client/socket-client/ssl/java
+
+Launch your LaunchClient java exec, it will :
+* open a server on 127.0.0.1:8443 (ssl or not)
+* build a client socket to be connecte to latter server later
+* ask you a set of command which will match HTTP request to be sent to this server. Each command is mapped in the server and a response is sent back to the client.
+
+![client side](https://raw.github.com/akinaru/socket-multiplatform/master/client_to_server_java.png)
+
 
 <hr/>
 
