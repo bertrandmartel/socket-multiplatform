@@ -61,6 +61,8 @@ public class HttpServer implements IHttpServer, IHttpServerEventListener {
 	/** set ssl encryption or not */
 	private boolean ssl = false;
 
+	private boolean isServerClosed = false;
+
 	/**
 	 * keystore certificate type
 	 */
@@ -198,7 +200,7 @@ public class HttpServer implements IHttpServer, IHttpServerEventListener {
 			/* close server socket safely */
 			serverSocket.close();
 		} catch (SocketException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			/* stop all thread and server socket */
 			stop();
 		} catch (IOException e) {
@@ -256,11 +258,18 @@ public class HttpServer implements IHttpServer, IHttpServerEventListener {
 	 * Stop server socket and stop running thread
 	 */
 	private void stop() {
-		/* close socket connection */
-		closeServerSocket();
 		/* disable loop */
 		running = false;
-		System.out.println("Stopping server socket");
+
+		if (!isServerClosed) {
+			isServerClosed = true;
+
+			/* close socket connection */
+			closeServerSocket();
+
+			System.out.println("Stopping server socket");
+		}
+
 	}
 
 	/** Stop server socket */

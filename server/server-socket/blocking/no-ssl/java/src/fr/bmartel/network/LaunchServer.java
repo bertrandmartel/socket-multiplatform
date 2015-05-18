@@ -97,11 +97,10 @@ public class LaunchServer {
 									+ PAGE_VIEW_COUNT + " times before.";
 
 							// return default html page for this HTTP Server
-							httpStream
-									.writeHttpResponseFrame(new HttpResponseFrame(
-											StatusCodeList.OK, new HttpVersion(
-													1, 1), headers, defaultPage
-													.getBytes()));
+							httpStream.writeHttpFrame(new HttpResponseFrame(
+									StatusCodeList.OK, new HttpVersion(1, 1),
+									headers, defaultPage.getBytes()).toString()
+									.getBytes());
 							PAGE_VIEW_COUNT++;
 						}
 					}

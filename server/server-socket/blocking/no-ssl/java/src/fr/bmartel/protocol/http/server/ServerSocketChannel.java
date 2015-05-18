@@ -30,8 +30,6 @@ import java.net.Socket;
 import java.net.SocketException;
 
 import fr.bmartel.protocol.http.HttpFrame;
-import fr.bmartel.protocol.http.inter.IHttpFrame;
-import fr.bmartel.protocol.http.inter.IHttpResponseFrame;
 import fr.bmartel.protocol.http.listeners.IHttpServerEventListener;
 import fr.bmartel.protocol.http.states.HttpStates;
 
@@ -142,20 +140,10 @@ public class ServerSocketChannel implements Runnable, IHttpStream {
 	}
 
 	@Override
-	public int writeHttpResponseFrame(IHttpResponseFrame httpFrame) {
+	public int writeHttpFrame(byte[] data) {
 		try {
-			this.outputStream.write(httpFrame.toString().getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return -1;
-		}
-		return 0;
-	}
-
-	@Override
-	public int writeHttpRequestFrame(IHttpFrame httpFrame) {
-		try {
-			this.outputStream.write(httpFrame.toString().getBytes());
+			this.outputStream.write(data);
+			this.outputStream.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return -1;

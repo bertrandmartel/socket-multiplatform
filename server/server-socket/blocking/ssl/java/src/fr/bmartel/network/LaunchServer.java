@@ -40,7 +40,7 @@ import fr.bmartel.protocol.http.states.HttpStates;
 import fr.bmartel.protocol.http.utils.StringUtils;
 
 /**
- * HttP SSL Server launcher
+ * Http Server launcher
  * 
  * @author Bertrand Martel
  *
@@ -71,10 +71,10 @@ public class LaunchServer {
 		// initiate HTTP server
 		HttpServer server = new HttpServer(PORT);
 
-		// set ssl encryption server.setSsl(true);
+		// set ssl encryption
 		server.setSsl(true);
 
-		// set ssl parameters server.setSSLParams(KEYSTORE_DEFAULT_TYPE,
+		// set ssl parameters
 		server.setSSLParams(KEYSTORE_DEFAULT_TYPE, TRUSTORE_DEFAULT_TYPE,
 				KEYSTORE_FILE_PATH, TRUSTORE_FILE_PATH, SSL_PROTOCOL,
 				KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
@@ -97,11 +97,10 @@ public class LaunchServer {
 									+ PAGE_VIEW_COUNT + " times before.";
 
 							// return default html page for this HTTP Server
-							httpStream
-									.writeHttpResponseFrame(new HttpResponseFrame(
-											StatusCodeList.OK, new HttpVersion(
-													1, 1), headers, defaultPage
-													.getBytes()));
+							httpStream.writeHttpFrame(new HttpResponseFrame(
+									StatusCodeList.OK, new HttpVersion(1, 1),
+									headers, defaultPage.getBytes()).toString()
+									.getBytes());
 							PAGE_VIEW_COUNT++;
 						}
 					}
