@@ -414,6 +414,14 @@ Launch your LaunchClient java exec, it will :
 
 <hr/>
 
+<b>Java</b>
+
 * Project is JRE 1.7 compliant
 * You can build it with ant => build.xml
 * Development on Eclipse 
+
+<b>C++ QT</b>
+
+* Project is Qt4 compliant
+* You can build it with qmake
+* Development on QtCreator
