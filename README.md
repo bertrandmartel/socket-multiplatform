@@ -11,7 +11,7 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"><b>C++ QT4</b></td>
     </tr>
     <tr>
-        <td colspan="2" rowspan="4">TCP Server socket</td>
+        <td colspan="2" rowspan="4">HTTP Server socket</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no ssl</td>
         <td colspan="2"><img src="./OK.png"/></td>
@@ -58,7 +58,7 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"><img src="./OK.png"/></td>
     </tr>
     <tr>
-        <td colspan="4" rowspan="2">TCP Client socket</td>
+        <td colspan="4" rowspan="2">HTTP Client socket</td>
         <td colspan="2">no ssl</td>
         <td colspan="2"><img src="./OK.png"/></td>
         <td colspan="2" rowspan="2"><img src="./OK.png"/></td>
