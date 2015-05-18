@@ -27,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import fr.bmartel.protocol.http.SslClientSocket;
+import fr.bmartel.protocol.http.ClientSocket;
 import fr.bmartel.protocol.http.HttpFrame;
 import fr.bmartel.protocol.http.HttpResponseFrame;
 import fr.bmartel.protocol.http.HttpVersion;
@@ -95,7 +95,7 @@ public class LaunchClient {
 		startTestServer(PORT);
 
 		// new instance of client socket
-		SslClientSocket clientSocket = new SslClientSocket(HOSTNAME, PORT);
+		ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);
 
 		// set SSL encryption
 		//clientSocket.setSsl(true);

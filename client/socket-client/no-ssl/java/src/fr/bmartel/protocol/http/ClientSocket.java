@@ -64,7 +64,7 @@ import fr.bmartel.protocol.http.states.HttpStates;
  * @author Bertrand Martel
  *
  */
-public class SslClientSocket implements IClientSocket {
+public class ClientSocket implements IClientSocket {
 
 	/**
 	 * socket server hostname
@@ -141,7 +141,7 @@ public class SslClientSocket implements IClientSocket {
 	 * @param hostname
 	 * @param port
 	 */
-	public SslClientSocket(String hostname, int port) {
+	public ClientSocket(String hostname, int port) {
 		this.hostname = hostname;
 		this.port = port;
 	}
@@ -250,7 +250,7 @@ public class SslClientSocket implements IClientSocket {
 							for (int i = 0; i < clientListenerList.size(); i++) {
 								clientListenerList.get(i)
 										.onIncomingHttpFrame(frame, httpStates,
-												SslClientSocket.this);
+												ClientSocket.this);
 							}
 
 							if (httpStates == HttpStates.HTTP_READING_ERROR) {
