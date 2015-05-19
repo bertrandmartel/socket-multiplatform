@@ -74,16 +74,16 @@ public class LaunchUdpSocket {
 
 				switch (dataStr) {
 				case "HELLO":
-					server.write("Hello from websocket server".getBytes(),
+					server.write("Hello from UDP server".getBytes(),
 							clientAddress, clientPort);
 					break;
 				case "GOODBYE":
 					server.write(
-							"Goodbye, See you from websocket server".getBytes(),
+							"Goodbye, See you from UDP server".getBytes(),
 							clientAddress, clientPort);
 					break;
 				case "T_T":
-					server.write("O_O from websocket server".getBytes(),
+					server.write("O_O from UDP server".getBytes(),
 							clientAddress, clientPort);
 					break;
 				}
