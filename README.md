@@ -1,5 +1,6 @@
 # Multi-platform Socket connections
 
+<i>Last update 19/05/2015</i>
 
 This project will features socket connection implementation on multiple platforms and frameworks :
 
@@ -283,6 +284,77 @@ Later, when you will write http frames to your client socket, all your data will
 
 <hr/>
 
+<b>Java UDP Server/Client</b>
+
+UDP Server and client are located in udp folder. One exemple features interactions between UDP server and UDP client in JAVA.
+
+The following will start an UDP socket (running as server) on port defined by PORT : 
+
+```
+UdpServer udpServer = new UdpServer(PORT);
+
+//add a server event listener
+udpServer.addServerEventListener(new IUdpServerEventListener() {
+
+    @Override
+    public void onDataReceived(byte[] data, IUdpServer server,
+            InetAddress clientAddress, int clientPort) {
+        
+        String dataStr = new String(data);
+
+        System.out
+                .println("[UDP SERVER] new data receveived in server : "
+                        + dataStr);
+    }
+});
+
+// UDP server is runnable : just run it into a thread ( naming the thread is recommended for debuggging )
+Thread serverThread = new Thread(udpServer,"UDP_SERVER");
+
+// start udp server
+serverThread.start();
+
+```
+
+UDP client socket will broadcast data to this server : 
+
+```
+UdpClient udpClient = new UdpClient(InetAddress.getByName(SERVER_BROADCAST_IP), PORT);
+
+udpClient.addClientEventListener(new IudpEventListener() {
+
+    @Override
+    public void onDataReceived(byte[] data) {
+        System.out
+                .println("[UDP CLIENT] new data receveived in client : "
+                        + new String(data));
+    }
+});
+```
+
+To send a string message use : ``udpClient.sendMessage(String message);`` method : 
+
+```
+udpClient.sendMessage("HELLO");
+```
+
+Mecanism of event listener is exactly the same as explained before for client socket in Java or for Java websocket lib (http://akinaru.github.io/websocket-java/).
+
+``onDataReceived(byte[] data)`` for UDP client callback will enable you to get incoming data response from UDP server.
+
+``onDataReceived(byte[] data, IUdpServer server,InetAddress clientAddress, int clientPort) for UDP server callback will enable you to get incoming data from the client and to redispatch any response you want to this client thanks to ``IUdpServer`` object that permits you to write a ``byte[]`` data like this :
+
+``
+server.write("Hello from websocket server".getBytes(),clientAddress, clientPort);
+``
+
+With address and port, UDP server will send your data back to client.
+
+For now, I didn't put in place a timer mecanisme on client side, to close client receiving thread. 
+TODO : timeout for client UDP socket waiting for response
+
+<hr/>
+
 <b>Keystore : public and private server certificates</b>
 
 * To convert cert and key certs to p12 : 
@@ -411,6 +483,16 @@ Launch your LaunchClient java exec, it will :
 
 ![client side](https://raw.github.com/akinaru/socket-multiplatform/master/client_to_server_java.png)
 
+<hr/>
+
+<b>Java UDP Server <-> Java UDP client communications</b>
+
+This exemple is located in udp/ for the class : fr.bmartel.network.LaunchUdpSocket
+=> This will launch one UDP server and one UDP client that connect to this server. UDP Server will send back a response to UDP client
+
+Like all other socket connections lib, event listeners are used to catch data :
+
+![udp communication](https://raw.github.com/akinaru/socket-multiplatform/master/udp_client_to_server_java.png)
 
 <hr/>
 
@@ -425,3 +507,5 @@ Launch your LaunchClient java exec, it will :
 * Project is Qt4 compliant
 * You can build it with qmake
 * Development on QtCreator
+
+TODO : timeout for client UDP socket waiting for response
