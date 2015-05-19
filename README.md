@@ -532,7 +532,6 @@ This exemple is located in udp/ for the class : fr.bmartel.network.LaunchUdpSock
 
 Like all other socket connections lib, event listeners are used to catch data :
 
-![udp communication](https://raw.github.com/akinaru/socket-multiplatform/master/udp_client_to_server_java.png)
 
 <hr/>
 
