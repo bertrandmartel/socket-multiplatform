@@ -123,6 +123,12 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2"></td>
         <td colspan="2"></td>
     </tr>
+        <tr>
+        <td colspan="6"></td>
+        <td colspan="2"><b>Java</b></td>
+        <td colspan="2"><b>Browser</b></td>
+        <td colspan="2"><b>C++ QT4</b></td>
+    </tr>
 </table>
 
 List of external projects :
