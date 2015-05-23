@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Socket-multiplatform by akinaru</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Socket-multiplatform</h1>
+      <h2 class="project-tagline">Multi-platform Socket connection types</h2>
+      <a href="https://github.com/akinaru/socket-multiplatform" class="btn">View on GitHub</a>
+      <a href="https://github.com/akinaru/socket-multiplatform/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/akinaru/socket-multiplatform/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="multi-platform-socket-connections" class="anchor" href="#multi-platform-socket-connections" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-platform Socket connections</h1>
+
+<p><i>Last update 19/05/2015</i></p>
+
+<p>This project will features socket connection implementation on multiple platforms and frameworks :</p>
+
+<table>
+    <tr>
+        <td colspan="6"></td>
+        <td colspan="2"><b>Java</b></td>
+        <td colspan="2"><b>Browser</b></td>
+        <td colspan="2"><b>C++ QT4</b></td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4">HTTP Server socket</td>
+        <td colspan="2" rowspan="2">blocking</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2" rowspan="8"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2">non-blocking</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"><img src="./OK.png"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"><img src="./OK.png"></td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4">Server websocket</td>
+        <td colspan="2" rowspan="2">blocking</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2">non-blocking</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"><img src="./OK.png"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"><img src="./OK.png"></td>
+    </tr>
+    <tr>
+        <td colspan="4" rowspan="2">HTTP Client socket</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2" rowspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="4" rowspan="2">Client websocket</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+    </tr>
+     <tr>
+        <td colspan="2" rowspan="4">UDP server</td>
+        <td colspan="2" rowspan="2">blocking</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2">non-blocking</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="4" rowspan="2">UDP Client</td>
+        <td colspan="2">no ssl</td>
+        <td colspan="2"><img src="./OK.png"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr>
+        <td colspan="2">ssl</td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+</table>
+
+<p>List of external projects :</p>
+
+<ul>
+<li><p>Websocket C++ QT4 :  <a href="http://akinaru.github.io/websocket-non-blocking-cpp/">http://akinaru.github.io/websocket-non-blocking-cpp/</a></p></li>
+<li><p>Websocket JAVA    :  <a href="http://akinaru.github.io/websocket-java/">http://akinaru.github.io/websocket-java/</a></p></li>
+</ul>
+
+<hr>
+
+<p><b>How to launch Java HTTP Server socket</b></p>
+
+<pre><code>HttpServer server = new HttpServer(PORT);
+
+server.start();
+
+</code></pre>
+
+<p><b>How to monitor my clients connected to server ?</b></p>
+
+<p>Just add a Listener to server object. You have 1 callback that enables you to :</p>
+
+<ul>
+<li><p>To get current http frame object received (decoded http frame)</p></li>
+<li><p>To get http decoding frame status (in case of parsing error, reading error or socket error)</p></li>
+<li><p>To write Http request or response back to current client</p></li>
+</ul>
+
+<pre><code>server.addServerEventListener(new IHttpServerEventListener() {
+
+            @Override
+            public void onHttpFrameReceived(IHttpFrame httpFrame,HttpStates receptionStates, IHttpStream httpStream) {
+
+                //check if http frame is OK
+                if (receptionStates == HttpStates.HTTP_FRAME_OK) {
+
+                    //you can check here http frame type (response or request frame)
+                    if (httpFrame.isHttpRequestFrame()) {
+
+                        //we want to send a message to client for http GET request on page with uri /index
+                        if (httpFrame.getMethod().equals("GET") &amp;&amp; httpFrame.getUri().equals("/index")) {
+
+                            HashMap&lt;String, String&gt; headers = new HashMap&lt;String, String&gt;();
+
+                            String defaultPage = "Hello from custom Java HTTP Server\r\nThis page has been seen "
+                                    + PAGE_VIEW_COUNT + " times before.";
+
+                            // return default html page for this HTTP Server
+                            httpStream.writeHttpResponseFrame(new HttpResponseFrame(
+                                            StatusCodeList.OK, new HttpVersion(1, 1), headers, defaultPage.getBytes()));
+                            PAGE_VIEW_COUNT++;
+                        }
+                    }
+                }
+            }
+        });
+</code></pre>
+
+<p>Featured exemple display a message in client's browser when uri /index is called. When refreshing page counter will be incremented on displayed page.</p>
+
+<p><code>IHttpFrame</code> has following useful methods :</p>
+
+<ul>
+<li>boolean isHttpRequestFrame() </li>
+<li>boolean isHttpResponseFrame()</li>
+<li>String getMethod()</li>
+<li>String getUri()</li>
+<li>HashMap getHeaders()</li>
+<li>int getStatusCode()</li>
+<li>String getReasonPhrase()</li>
+<li>HttpVersion getHttpVersion()</li>
+</ul>
+
+<p><code>HttpStates</code> enum can have following states : </p>
+
+<ul>
+<li>MALFORMED_HTTP_FRAME</li>
+<li>HTTP_FRAME_OK</li>
+<li>HTTP_READING_ERROR</li>
+<li>HTTP_WRONG_VERSION</li>
+<li>HTTP_STATE_NONE</li>
+<li>SOCKET_ERROR</li>
+<li>HTTP_BODY_PARSE_ERROR</li>
+</ul>
+
+<p><code>IHttpStream</code> enables you to answered to http client with : </p>
+
+<ul>
+<li>writeHttpResponseFrame(IHttpResponseFrame httpFrame)</li>
+<li>writeHttpRequestFrame(IHttpFrame httpFrame)</li>
+</ul>
+
+<p><code>IHttpResponseFrame</code> and <code>IHttpFrame</code> are interface issued from http-endec-java project in <a href="http://akinaru.github.io/http-endec-java/">http://akinaru.github.io/http-endec-java/</a></p>
+
+<hr>
+
+<p><b>How to launch a SSL secured HTTP server ?</b></p>
+
+<pre><code>HttpServer server = new HttpServer(PORT);
+
+server.setSsl(true); // set SSL to true (default is false)
+
+</code></pre>
+
+<p>Then you set your keystore, trustore, type of these certificates, filepath and passwords : </p>
+
+<pre><code>server.setSSLParams(String KEYSTORE_DEFAULT_TYPE,
+            String KEYSTORE_FILE_PATH,
+            String TRUSTORE_FILE_PATH,
+            String SSL_PROTOCOL,
+            String KEYSTORE_PASSWORD,
+            String TRUSTORE_PASSWORD);
+</code></pre>
+
+<p>Here is the description of all of these parameters : </p>
+
+<ul>
+<li>KEYSTORE_DEFAULT_TYPE : type of certificates used as keystore, it usually contains public and private certificates, common format are PKCS12 and JKS</li>
+<li>TRUSTORE_DEFAULT_TYPE : type of certificates used as trustore, it should contain list of CA cert your server will trust</li>
+<li>KEYSTORE_FILE_PATH : file path to keystore cert file</li>
+<li>TRUSTORE_FILE_PATH: file path to trustore cert file</li>
+<li>SSL_PROTOCOL : ssl protocol used </li>
+<li>KEYSTORE_PASSWORD : keystore file password</li>
+<li>TRUSTORE_PASSWORD : trustore file password</li>
+</ul>
+
+<p>Eventually add event listener as described above and start HTTP server : </p>
+
+<pre><code>server.start();
+</code></pre>
+
+<hr>
+
+<p><b> Build/Connect a Java client socket</b></p>
+
+<p>Build an instance of client socket for later connection to server on HOSTNAME:PORT</p>
+
+<p><code>ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);</code>`</p>
+
+<p>Add a client event listener to be notified when incoming http arrives from the server</p>
+
+<pre><code>clientSocket.addClientSocketEventListener(new IHttpClientListener() {
+
+            @Override
+            public void onIncomingHttpFrame(HttpFrame frame,
+                    HttpStates httpStates, IClientSocket clientSocket) {
+
+                //here test if http frame decoding is fine
+                if (httpStates == HttpStates.HTTP_FRAME_OK &amp;&amp; frame.isHttpResponseFrame()) {
+
+                    //manage your response from the server or what you want
+
+                }
+            }
+        });
+</code></pre>
+
+<p>You can write request to server with <code>write(byte[] data)</code> method :</p>
+
+<p><code>clientSocket.write("GET /say_hello HTTP/1.1\r\n\r\n".getBytes("UTF-8"));</code></p>
+
+<p>You can use http-endec library to build http frame request or response to be sent to the server : <a href="http://akinaru.github.io/http-endec-java/">http://akinaru.github.io/http-endec-java/</a></p>
+
+<p>The <code>write(byte[] data)</code> method will automatically connect to the server and send your http frame data direclty. A reading thread will be created on the fly and response from the server will be received there and dispatch to your client event listener, you have declared above.</p>
+
+<p>Depending on your server implementation, client connection will be closed immediatly after http frame processing from the server. Reading thread will die shortly when no data remains to be read from the server socket.</p>
+
+<hr>
+
+<p><b> Build/Connect a Java SSL client socket</b></p>
+
+<p>This is the same as above but we add some SSL flavor to this : </p>
+
+<p>Build an instance of client socket for later connection to server on HOSTNAME:PORT</p>
+
+<pre><code>ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);
+
+//set SSL encryption
+clientSocket.setSsl(true);
+
+</code></pre>
+
+<p>Then you set your keystore, trustore, type of these certificates, filepath and passwords : </p>
+
+<pre><code>clientSocket.setSSLParams(KEYSTORE_DEFAULT_TYPE, TRUSTORE_DEFAULT_TYPE,
+        KEYSTORE_FILE_PATH, TRUSTORE_FILE_PATH, SSL_PROTOCOL,
+        KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
+
+</code></pre>
+
+<p>Here is the description of all of these parameters : </p>
+
+<ul>
+<li>KEYSTORE_DEFAULT_TYPE : type of certificates used as keystore, it usually contains public and private certificates, common format are PKCS12 and JKS</li>
+<li>TRUSTORE_DEFAULT_TYPE : type of certificates used as trustore, it should contain list of CA cert your client will trust</li>
+<li>KEYSTORE_FILE_PATH : file path to keystore cert file</li>
+<li>TRUSTORE_FILE_PATH: file path to trustore cert file</li>
+<li>SSL_PROTOCOL : ssl protocol used </li>
+<li>KEYSTORE_PASSWORD : keystore file password</li>
+<li>TRUSTORE_PASSWORD : trustore file password</li>
+</ul>
+
+<p>Later, when you will write http frames to your client socket, all your data will be encrypted according to your SSL settings</p>
+
+<hr>
+
+<p><b>Java UDP Server/Client</b></p>
+
+<p>UDP Server and client are located in udp folder. One exemple features interactions between UDP server and UDP client in JAVA.</p>
+
+<p>The following will start an UDP socket (running as server) on port defined by PORT : </p>
+
+<pre><code>UdpServer udpServer = new UdpServer(PORT);
+
+//add a server event listener
+udpServer.addServerEventListener(new IUdpServerEventListener() {
+
+    @Override
+    public void onDataReceived(byte[] data, IUdpServer server,
+            InetAddress clientAddress, int clientPort) {
+
+        String dataStr = new String(data);
+
+        System.out
+                .println("[UDP SERVER] new data receveived in server : "
+                        + dataStr);
+    }
+});
+
+// UDP server is runnable : just run it into a thread ( naming the thread is recommended for debuggging )
+Thread serverThread = new Thread(udpServer,"UDP_SERVER");
+
+// start udp server
+serverThread.start();
+
+</code></pre>
+
+<p>UDP client socket will broadcast data to this server : </p>
+
+<pre><code>UdpClient udpClient = new UdpClient(InetAddress.getByName(SERVER_BROADCAST_IP), PORT);
+
+udpClient.addClientEventListener(new IudpEventListener() {
+
+    @Override
+    public void onDataReceived(byte[] data) {
+        System.out
+                .println("[UDP CLIENT] new data receveived in client : "
+                        + new String(data));
+    }
+});
+</code></pre>
+
+<p>To send a string message use : <code>udpClient.sendMessage(String message);</code> method : </p>
+
+<pre><code>udpClient.sendMessage("HELLO");
+</code></pre>
+
+<p>Mecanism of event listener is exactly the same as explained before for client socket in Java or for Java websocket lib (<a href="http://akinaru.github.io/websocket-java/">http://akinaru.github.io/websocket-java/</a>).</p>
+
+<p><code>onDataReceived(byte[] data)</code> for UDP client callback will enable you to get incoming data response from UDP server.</p>
+
+<p><code>onDataReceived(byte[] data, IUdpServer server,InetAddress clientAddress, int clientPort) for UDP server callback will enable you to get incoming data from the client and to redispatch any response you want to this client thanks to</code>IUdpServer<code>object that permits you to write a</code>byte[]`` data like this :</p>
+
+<p><code>
+server.write("Hello from websocket server".getBytes(),clientAddress, clientPort);
+</code></p>
+
+<p>With address and port, UDP server will send your data back to client.</p>
+
+<p>For now, I didn't put in place a timer mecanisme on client side, to close client receiving thread. 
+TODO : timeout for client UDP socket waiting for response</p>
+
+<hr>
+
+<p><b>Keystore : public and private server certificates</b></p>
+
+<ul>
+<li>To convert cert and key certs to p12 : </li>
+</ul>
+
+<p><code>openssl pkcs12 -export -out server.p12 -inkey server.key -in server.crt</code></p>
+
+<p>Thus, you will have : <code>String KEYSTORE_DEFAULT_TYPE = "PKCS12"</code></p>
+
+<ul>
+<li>To convert your p12 (containing public and private cert) to jks : </li>
+</ul>
+
+<p>You have to know your alias (name matching your cert entry), if you dont have it retrieve it with : <code>keytool -v -list -storetype pkcs12 -keystore server.p12</code></p>
+
+<p><code>keytool -importkeystore -srckeystore server.p12 -srcstoretype PKCS12 -deststoretype JKS -destkeystore server.jks</code></p>
+
+<p>Thus, you will have : <code>String KEYSTORE_DEFAULT_TYPE = "JKS"</code></p>
+
+<p><b>Trustore : should contain only CA certificates</b></p>
+
+<p>convert ca cert to jks : </p>
+
+<p><code>keytool -import -alias ca -file ca.crt -keystore cacerts.jks -storepass 123456</code></p>
+
+<p>Thus, you will have : <code>String TRUSTORE_DEFAULT_TYPE = "JKS"</code></p>
+
+<hr>
+
+<p><b>QT C++ Non Blocking HTTP server socket</b></p>
+
+<p>Instantiation and start : </p>
+
+<pre><code>HttpServer server;
+
+server.listen(QHostAddress(IP),PORT);
+
+</code></pre>
+
+<p>You can add socket event listener that notify you of incominh http request/response </p>
+
+<pre><code>ClientSocketHandler *clientHandler = new ClientSocketHandler();
+
+server.addClientEventListener(clientHandler);
+</code></pre>
+
+<p><code>ClientSocketHandler</code> inherit from interface <code>IClientEventListener</code> which contains following methods :</p>
+
+<ul>
+<li>
+<code>void onHttpRequestReceived(IHttpClient &amp;client,Ihttpframe* consumer);</code> : notify when http request is received</li>
+<li>
+<code>void onHttpResponseReceived(IHttpClient &amp;client,Ihttpframe* consumer);</code> : notify when http response is received</li>
+</ul>
+
+<p>You can send http response or http request back to the client with <code>IHttpClient</code> got from previous callback.</p>
+
+<p><code>IHttpClient</code> has a <code>sendHttpMessage(std::string message)</code> for sending http message back to client</p>
+
+<hr>
+
+<p><b>TroubleShooting</b></p>
+
+<p><i>Bad certificate | Unknown CA errors</i></p>
+
+<p>This could mean you didn't import your not-trusted-CA certificate into your browser.</p>
+
+<p><i>The remote host closed the connection</i></p>
+
+<p>Usually happen when your browser closed the connection before the end of SSL handshake. If you already added your CA to your browser dont worry.
+Both Chrome and Firefox need to MANUALLY add the certificate (in a popup) so putting it in parameter menu don't change anything.</p>
+
+<p>Just load your URL with "https" : <a href="https://127.0.0.1:8443">https://127.0.0.1:8443</a> . Browser will prompt you to accept the certificates and it will probably solve your connection error.</p>
+
+<p><i>CKR_DOMAIN_PARAMS_INVALID error using openjdk</i></p>
+
+<p>With openjdk-6-jdk and openjdk-7-jdk, I encountered java.security bug described in <a href="https://bugs.launchpad.net/ubuntu/+source/openjdk-7/+bug/1006776">https://bugs.launchpad.net/ubuntu/+source/openjdk-7/+bug/1006776</a> triggering a <code>CKR_DOMAIN_PARAMS_INVALID</code> exception error. Solution was to edit java.security parameters in /etc/java-7-openjdk/security/java.security </p>
+
+<p>I replaced that : </p>
+
+<pre><code>security.provider.9=sun.security.smartcardio.SunPCSC
+security.provider.10=sun.security.pkcs11.SunPKCS11 ${java.home}/lib/security/nss.cfg
+</code></pre>
+
+<p>with that : </p>
+
+<pre><code>#security.provider.9=sun.security.smartcardio.SunPCSC
+security.provider.9=sun.security.ec.SunEC
+#security.provider.10=sun.security.pkcs11.SunPKCS11 ${java.home}/lib/security/nss.cfg
+</code></pre>
+
+<p><b>Browser tested</b></p>
+
+<p>This has been tested on following browser : </p>
+
+<ul>
+<li>Chrome</li>
+<li>Chromium</li>
+<li>Firefox</li>
+</ul>
+
+<hr>
+
+<p><b>Debugging SSL connection error</b></p>
+
+<p>I recommmend using openssl command line tool to debug ssl connection : </p>
+
+<p><code>openssl s_client -connect 127.0.0.1:8443</code></p>
+
+<p>You can also use vm argument debugging java ssl implementation : <code>-Djavax.net.debug=ssl</code></p>
+
+<hr>
+
+<p><b>Server-Client key/cert generation</b></p>
+
+<p>Certs are in libwesocket-test/certs folder, you will find server,client and ca cert build with easy-rsa :</p>
+
+<p><a href="https://github.com/OpenVPN/easy-rsa">https://github.com/OpenVPN/easy-rsa</a></p>
+
+<p>With last release of easy-rsa, you can build your own key with the following : </p>
+
+<ul>
+<li>
+<code>./build-ca</code> : generate a new CA for you</li>
+<li>
+<code>./build-server-full myServer</code> : will build for you public cert and private cert signed with CA for server</li>
+<li>
+<code>./build-client-full myClient</code> : will build for you public cert and private cert signed with CA for client</li>
+</ul>
+
+<p><b>How to close my HTTP server ?</b></p>
+
+<p><code>server.closeServer();</code></p>
+
+<hr>
+
+<p><b>COMMAND LINE SYNTAX</b> </p>
+
+<p>The following will open http server on port 4343 (default port value for my exemple)</p>
+
+<p><code>java -cp ../libs/http-endec-1.0.jar:libsocket-1.0.jar fr.bmartel.network.LaunchServer</code></p>
+
+<p>You can change port number by specifying yours</p>
+
+<p><code>java -cp ../libs/http-endec-1.0.jar:libsocket-1.0.jar fr.bmartel.network.LaunchServer 4343</code></p>
+
+<p>This exemple is launched from /release folder</p>
+
+<hr>
+
+<p><b>Java HTTP server : Exemple with Browser HTTP client</b></p>
+
+<p>This exemple is located in server/server-socket/blocking/no-ssl/java or server/server-socket/blocking/ssl/java</p>
+
+<ul>
+<li>Launch the HTTP server on port 8443</li>
+<li>On your browser go to url <a href="http://127.0.0.1:8443/index">http://127.0.0.1:8443/index</a>
+</li>
+</ul>
+
+<p><img src="https://raw.github.com/akinaru/socket-multiplatform/master/clientSide.png" alt="client side"></p>
+
+<p><b>QT C++ non-blocking HTTP server : Exemple with Browser HTTP client</b></p>
+
+<p>This exemple is located in server/server-socket/non-blocking/no-ssl/cpp or server/server-socket/non-blocking/ssl/cpp</p>
+
+<ul>
+<li>Launch the HTTP server on port 8443</li>
+<li>On your browser go to url <a href="http://127.0.0.1:8443/index">http://127.0.0.1:8443/index</a>
+</li>
+</ul>
+
+<p><img src="https://raw.github.com/akinaru/socket-multiplatform/master/clientSideHttpCpp.png" alt="client side"></p>
+
+<p><b>Java HTTP client : Exemple with Java socket server &lt;-&gt; Java socket client</b></p>
+
+<p>This exemple is located in client/socket-client/no-ssl/java or client/socket-client/ssl/java</p>
+
+<p>Launch your LaunchClient java exec, it will :</p>
+
+<ul>
+<li>open a server on 127.0.0.1:8443 (ssl or not)</li>
+<li>build a client socket to be connecte to latter server later</li>
+<li>ask you a set of command which will match HTTP request to be sent to this server. Each command is mapped in the server and a response is sent back to the client.</li>
+</ul>
+
+<p><img src="https://raw.github.com/akinaru/socket-multiplatform/master/client_to_server_java.png" alt="client side"></p>
+
+<hr>
+
+<p><b>Java UDP Server &lt;-&gt; Java UDP client communications</b></p>
+
+<p>This exemple is located in udp/ for the class : fr.bmartel.network.LaunchUdpSocket
+=&gt; This will launch one UDP server and one UDP client that connect to this server. UDP Server will send back a response to UDP client</p>
+
+<p>Like all other socket connections lib, event listeners are used to catch data :</p>
+
+<p><img src="https://raw.github.com/akinaru/socket-multiplatform/master/udp_client_to_server_java.png" alt="udp communication"></p>
+
+<hr>
+
+<p><b>Java</b></p>
+
+<ul>
+<li>Project is JRE 1.7 compliant</li>
+<li>You can build it with ant =&gt; build.xml</li>
+<li>Development on Eclipse </li>
+</ul>
+
+<p><b>C++ QT</b></p>
+
+<ul>
+<li>Project is Qt4 compliant</li>
+<li>You can build it with qmake</li>
+<li>Development on QtCreator</li>
+</ul>
+
+<p>TODO : timeout for client UDP socket waiting for response</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/akinaru/socket-multiplatform">Socket-multiplatform</a> is maintained by <a href="https://github.com/akinaru">akinaru</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
