@@ -56,6 +56,14 @@ public:
      */
     static bool isNum(char *s);
 
+    // trim from start
+    static std::string& ltrim(std::string& s);
+
+    // trim from end
+    static std::string& rtrim(std::string& s);
+
+    // trim from both ends
+    static std::string& trim(std::string& s);
 };
 
 #endif // STRINGUTILS_H
