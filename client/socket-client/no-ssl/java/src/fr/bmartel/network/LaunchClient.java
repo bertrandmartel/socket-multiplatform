@@ -185,8 +185,9 @@ public class LaunchClient {
 
 		// close server
 		if (serverTest != null)
-			serverTest.closeServer();
-
+			serverTest.closeServer();	
+		
+		scan.close();
 	}
 
 	/**
