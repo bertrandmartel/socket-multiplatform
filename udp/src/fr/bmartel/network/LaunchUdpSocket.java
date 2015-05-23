@@ -162,6 +162,9 @@ public class LaunchUdpSocket {
 				udpServer.close();
 				serverThread.join();
 			}
+			
+			scan.close();
+			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
