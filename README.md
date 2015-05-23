@@ -28,12 +28,12 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2" rowspan="2">non-blocking</td>
         <td colspan="2">no ssl</td>
         <td colspan="2"></td>
-        <td colspan="2"></td>
+        <td colspan="2"><img src="./OK.png"/></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
-        <td colspan="2"></td>
+        <td colspan="2"><img src="./OK.png"/></td>
     </tr>
     <tr>
         <td colspan="2" rowspan="4">Server websocket</td>
