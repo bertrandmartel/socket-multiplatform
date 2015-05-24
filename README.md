@@ -133,39 +133,39 @@ This project will features socket connection implementation on multiple platform
     </tr>
 </table>
 
-<h2>Description of Websocket Server/Client JAVA</h2>
+<h2>Description of Java Websocket Server/Client</h2>
 
-[JAVA Websocket server README](http://akinaru.github.io/websocket-java/)
+[JAVA Websocket server sub-project](http://akinaru.github.io/websocket-java/)
 
 <hr/>
 
-<h2>Description of Websocket Server C++ QT4</h2>
+<h2>Description of C++ QT4 Non-blocking Websocket Server</h2>
 
-[C++ QT4 Websocket server README](http://akinaru.github.io/websocket-non-blocking-cpp/)
+[C++ QT4 Websocket server sub-project](http://akinaru.github.io/websocket-non-blocking-cpp/)
 
 <hr/>
 
 <h2>Description of Java HTTP Server Socket</h2>
 
-[java HTTP server socket README](server/server-socket/blocking/java/)
+[JAVA HTTP server socket sub-project](server/server-socket/blocking/java/)
 
 <hr/>
 
 <h2>Description of Java HTTP Client Socket</h2>
 
-[java HTTP client socket README](client/socket-client/java/)
+[JAVA HTTP client socket sub-project](client/socket-client/java/)
 
 <hr/>
 
 <h2>Description of Java UDP Server/Client Socket</h2>
 
-[java UDP client/server socket README](udp/java/)
+[JAVA UDP client/server socket sub-project](udp/java/)
 
 <hr/>
 
-<h2>Description of C++ Non Blocking HTTP Server socket</h2>
+<h2>Description of C++ QT4 Non Blocking HTTP Server socket</h2>
 
-[C++ Non Blocking HTTP Server socket README](server/server-socket/non-blocking/cpp/)
+[C++ Non Blocking HTTP Server socket](server/server-socket/non-blocking/cpp/)
 
 <hr/>
 
