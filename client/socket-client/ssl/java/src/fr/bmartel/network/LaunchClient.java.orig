@@ -27,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import fr.bmartel.protocol.http.ClientSocket;
+import fr.bmartel.protocol.http.SslClientSocket;
 import fr.bmartel.protocol.http.HttpFrame;
 import fr.bmartel.protocol.http.HttpResponseFrame;
 import fr.bmartel.protocol.http.HttpVersion;
@@ -77,12 +77,12 @@ public class LaunchClient {
 
 	private final static String KEYSTORE_DEFAULT_TYPE = "PKCS12";
 	private final static String TRUSTORE_DEFAULT_TYPE = "JKS";
-	
+
 	private final static String CLIENT_KEYSTORE_FILE_PATH = "~/socket-multiplatform/client/socket-client/ssl/java/certs/client/client.p12";
 	private final static String CLIENT_TRUSTORE_FILE_PATH = "~/socket-multiplatform/client/socket-client/ssl/java/certs/ca.jks";
 	private final static String SERVER_KEYSTORE_FILE_PATH = "~/socket-multiplatform/client/socket-client/ssl/java/certs/server/server.p12";
 	private final static String SERVER_TRUSTORE_FILE_PATH = "~/socket-multiplatform/client/socket-client/ssl/java/certs/ca.jks";
-	
+
 	private final static String SSL_PROTOCOL = "TLS";
 	private final static String KEYSTORE_PASSWORD = "123456";
 	private final static String TRUSTORE_PASSWORD = "123456";
@@ -99,18 +99,16 @@ public class LaunchClient {
 		startTestServer(PORT);
 
 		// new instance of client socket
-		ClientSocket clientSocket = new ClientSocket(HOSTNAME, PORT);
+		SslClientSocket clientSocket = new SslClientSocket(HOSTNAME, PORT);
 
 		// set SSL encryption
-		//clientSocket.setSsl(true);
+		clientSocket.setSsl(true);
 
 		// set ssl parameters
-		/*
 		clientSocket.setSSLParams(KEYSTORE_DEFAULT_TYPE, TRUSTORE_DEFAULT_TYPE,
-				CLIENT_KEYSTORE_FILE_PATH, CLIENT_TRUSTORE_FILE_PATH, SSL_PROTOCOL,
-				KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
-		*/
-		
+				CLIENT_KEYSTORE_FILE_PATH, CLIENT_TRUSTORE_FILE_PATH,
+				SSL_PROTOCOL, KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
+
 		// add a client event listener to be notified for incoming http frames
 		clientSocket.addClientSocketEventListener(new IHttpClientListener() {
 
@@ -185,7 +183,7 @@ public class LaunchClient {
 
 		// close server
 		if (serverTest != null)
-			serverTest.closeServer();	
+			serverTest.closeServer();
 		
 		scan.close();
 	}
@@ -204,15 +202,13 @@ public class LaunchClient {
 		// start a new http server to test our http client
 		serverTest = new HttpServer(port);
 
-		//serverTest.setSsl(true);
+		serverTest.setSsl(true);
 
 		// set ssl parameters
-		/*
 		serverTest.setSSLParams(KEYSTORE_DEFAULT_TYPE, TRUSTORE_DEFAULT_TYPE,
-				SERVER_KEYSTORE_FILE_PATH, SERVER_TRUSTORE_FILE_PATH, SSL_PROTOCOL,
-				KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
-		*/
-		
+				SERVER_KEYSTORE_FILE_PATH, SERVER_TRUSTORE_FILE_PATH,
+				SSL_PROTOCOL, KEYSTORE_PASSWORD, TRUSTORE_PASSWORD);
+
 		// get frames coming from client socket
 		// you can put any message you want to notify client here
 		serverTest.addServerEventListener(new IHttpServerEventListener() {
