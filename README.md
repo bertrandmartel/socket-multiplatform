@@ -133,37 +133,37 @@ This project will features socket connection implementation on multiple platform
     </tr>
 </table>
 
-<h2>Description of Java Websocket Server/Client</h2>
+<h3>Description of Java Websocket Server/Client</h3>
 
 [JAVA Websocket server sub-project](http://akinaru.github.io/websocket-java/)
 
 <hr/>
 
-<h2>Description of C++ QT4 Non-blocking Websocket Server</h2>
+<h3>Description of C++ QT4 Non-blocking Websocket Server</h3>
 
 [C++ QT4 Websocket server sub-project](http://akinaru.github.io/websocket-non-blocking-cpp/)
 
 <hr/>
 
-<h2>Description of Java HTTP Server Socket</h2>
+<h3>Description of Java HTTP Server Socket</h3>
 
 [JAVA HTTP server socket sub-project](server/server-socket/blocking/java/)
 
 <hr/>
 
-<h2>Description of Java HTTP Client Socket</h2>
+<h3>Description of Java HTTP Client Socket</h3>
 
 [JAVA HTTP client socket sub-project](client/socket-client/java/)
 
 <hr/>
 
-<h2>Description of Java UDP Server/Client Socket</h2>
+<h3>Description of Java UDP Server/Client Socket</h3>
 
 [JAVA UDP client/server socket sub-project](udp/java/)
 
 <hr/>
 
-<h2>Description of C++ QT4 Non Blocking HTTP Server socket</h2>
+<h3>Description of C++ QT4 Non Blocking HTTP Server socket</h3>
 
 [C++ Non Blocking HTTP Server socket](server/server-socket/non-blocking/cpp/)
 
