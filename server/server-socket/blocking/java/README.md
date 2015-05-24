@@ -131,3 +131,14 @@ This exemple is located in server/server-socket/blocking/no-ssl/java or server/s
 
 ![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSide.png)
 
+<b>COMMAND LINE SYNTAX</b> 
+
+The following will open http server on port 4343 (default port value for my exemple)
+
+``java -cp ../libs/http-endec-1.0.jar:libsocket-1.0.jar fr.bmartel.network.LaunchServer``
+
+You can change port number by specifying yours
+
+``java -cp ../libs/http-endec-1.0.jar:libsocket-1.0.jar fr.bmartel.network.LaunchServer 4343``
+
+This exemple is launched from /release folder

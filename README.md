@@ -256,18 +256,6 @@ With last release of easy-rsa, you can build your own key with the following :
 * ``./build-server-full myServer`` : will build for you public cert and private cert signed with CA for server
 * ``./build-client-full myClient`` : will build for you public cert and private cert signed with CA for client
 
-<b>COMMAND LINE SYNTAX</b> 
-
-The following will open http server on port 4343 (default port value for my exemple)
-
-``java -cp ../libs/http-endec-1.0.jar:libsocket-1.0.jar fr.bmartel.network.LaunchServer``
-
-You can change port number by specifying yours
-
-``java -cp ../libs/http-endec-1.0.jar:libsocket-1.0.jar fr.bmartel.network.LaunchServer 4343``
-
-This exemple is launched from /release folder
-
 <hr/>
 
 <b>Java</b>
