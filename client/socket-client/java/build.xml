@@ -9,7 +9,7 @@
     <target name="create_run_jar">
         <jar destfile="${basedir}/release/clientsocket-${version}.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="fr.bmartel.network.LaunchClient"/>
+                <attribute name="Main-Class" value="fr.bmartel.network.ExternalHostTest"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="${basedir}/bin"/>

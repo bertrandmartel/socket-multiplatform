@@ -25,7 +25,7 @@ package fr.bmartel.protocol.http;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
 import java.security.KeyManagementException;
@@ -161,14 +161,19 @@ public class ClientSocket implements IClientSocket {
 		}
 		try {
 
+			socket = null;
+
 			if (ssl) {
 				/* initial server keystore instance */
 				KeyStore ks = KeyStore.getInstance(keystoreDefaultType);
 
-				/* load keystore from file */
-				ks.load(new FileInputStream(keystoreFile),
-						keystorePassword.toCharArray());
-
+				if (!keystoreFile.equals("")) {
+					/* load keystore from file */
+					ks.load(new FileInputStream(keystoreFile),
+							keystorePassword.toCharArray());
+				} else {
+					ks.load(null, null);
+				}
 				/*
 				 * assign a new keystore containing all certificated to be
 				 * trusted
@@ -180,17 +185,20 @@ public class ClientSocket implements IClientSocket {
 						trustorePassword.toCharArray());
 
 				/* initialize key manager factory with chosen algorithm */
-				KeyManagerFactory kmf = KeyManagerFactory
-						.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+				KeyManagerFactory kmf = null;
+
+				if (!keystoreFile.equals("")) {
+					kmf = KeyManagerFactory.getInstance(KeyManagerFactory
+							.getDefaultAlgorithm());
+					/* initialize key manager factory with initial keystore */
+					kmf.init(ks, keystorePassword.toCharArray());
+				}
 
 				/* initialize trust manager factory with chosen algorithm */
 				TrustManagerFactory tmf;
 
 				tmf = TrustManagerFactory.getInstance(TrustManagerFactory
 						.getDefaultAlgorithm());
-
-				/* initialize key manager factory with initial keystore */
-				kmf.init(ks, keystorePassword.toCharArray());
 
 				/*
 				 * initialize trust manager factory with keystore containing
@@ -204,31 +212,30 @@ public class ClientSocket implements IClientSocket {
 				/*
 				 * initialize SSL context with key manager and trust managers
 				 */
-				ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+				if (kmf != null) {
+					ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+				} else {
+					ctx.init(null, tmf.getTrustManagers(), null);
+				}
 
 				SSLSocketFactory sslserversocketfactory = ctx
 						.getSocketFactory();
 
 				/* create a SSL socket connection */
-				socket = new Socket();
-				socket = sslserversocketfactory.createSocket();
+				socket = sslserversocketfactory.createSocket(hostname, port);
 
 			} else {
-
 				/* create a basic socket connection */
-				socket = new Socket();
+				socket = new Socket(InetAddress.getByName(hostname), port);
 			}
 
 			/* establish socket parameters */
 			socket.setReuseAddress(true);
-
 			socket.setKeepAlive(true);
 
 			if (socketTimeout != -1) {
 				socket.setSoTimeout(socketTimeout);
 			}
-
-			socket.connect(new InetSocketAddress(hostname, port));
 
 			if (readingThread != null) {
 				isReading = false;
@@ -244,22 +251,30 @@ public class ClientSocket implements IClientSocket {
 						try {
 							HttpFrame frame = new HttpFrame();
 
-							HttpStates httpStates = frame.parseHttp(socket
-									.getInputStream());
+							if (!socket.isClosed()) {
+								HttpStates httpStates = frame.parseHttp(socket
+										.getInputStream());
 
-							for (int i = 0; i < clientListenerList.size(); i++) {
-								clientListenerList.get(i).onIncomingHttpFrame(
-										frame, httpStates, ClientSocket.this);
-							}
+								for (int i = 0; i < clientListenerList.size(); i++) {
+									clientListenerList.get(i)
+											.onIncomingHttpFrame(frame,
+													httpStates,
+													ClientSocket.this);
+								}
 
-							if (httpStates == HttpStates.HTTP_READING_ERROR) {
+								if (httpStates == HttpStates.HTTP_READING_ERROR) {
+									isReading = false;
+									closeSocket();
+								}
+							} else {
 								isReading = false;
-								closeSocket();
 							}
 
 						} catch (SocketException e) {
+							isReading = false;
 							e.printStackTrace();
 						} catch (Exception e) {
+							isReading = false;
 							e.printStackTrace();
 						}
 					}
