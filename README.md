@@ -147,25 +147,25 @@ This project will features socket connection implementation on multiple platform
 
 <h2>Description of Java HTTP Server Socket</h2>
 
-[java HTTP server socket README](server/server-socket/blocking/java/README.md)
+[java HTTP server socket README](server/server-socket/blocking/java/)
 
 <hr/>
 
 <h2>Description of Java HTTP Client Socket</h2>
 
-[java HTTP client socket README](client/socket-client/java/README.md)
+[java HTTP client socket README](client/socket-client/java/)
 
 <hr/>
 
 <h2>Description of Java UDP Server/Client Socket</h2>
 
-[java UDP client/server socket README](udp/java/README.md)
+[java UDP client/server socket README](udp/java/)
 
 <hr/>
 
 <h2>Description of C++ Non Blocking HTTP Server socket</h2>
 
-[C++ Non Blocking HTTP Server socket README](server/server-socket/non-blocking/cpp/README.md)
+[C++ Non Blocking HTTP Server socket README](server/server-socket/non-blocking/cpp/)
 
 <hr/>
 
