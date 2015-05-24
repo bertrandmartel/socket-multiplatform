@@ -169,7 +169,7 @@ This project will features socket connection implementation on multiple platform
 
 <hr/>
 
-<b>TroubleShooting</b>
+<h3>TroubleShooting</h3>
 
 <b>Keystore : public and private server certificates</b>
 
