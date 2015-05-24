@@ -258,7 +258,9 @@ server.start();
 <hr/>
 
 
-<h2>Desciption of Java Client Socket in [link to java client socket README](client/socket-client/java/README.md)</h2>
+<h2>Description of Java Client Socket</h2>
+
+[java client socket README](client/socket-client/java/README.md)
 
 <hr/>
 
