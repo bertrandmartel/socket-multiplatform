@@ -133,207 +133,43 @@ This project will features socket connection implementation on multiple platform
     </tr>
 </table>
 
-List of external projects :
+<h2>Description of Websocket Server/Client JAVA</h2>
 
-* Websocket C++ QT4 :  http://akinaru.github.io/websocket-non-blocking-cpp/
-
-* Websocket JAVA    :  http://akinaru.github.io/websocket-java/
+[JAVA Websocket server README](http://akinaru.github.io/websocket-java/)
 
 <hr/>
 
-<b>How to launch Java HTTP Server socket</b>
+<h2>Description of Websocket Server C++ QT4</h2>
 
-```
-HttpServer server = new HttpServer(PORT);
-
-server.start();
-
-```
-
-<b>How to monitor my clients connected to server ?</b>
-
-Just add a Listener to server object. You have 1 callback that enables you to :
-
-* To get current http frame object received (decoded http frame)
-
-* To get http decoding frame status (in case of parsing error, reading error or socket error)
-
-* To write Http request or response back to current client
-
-```
-server.addServerEventListener(new IHttpServerEventListener() {
-
-            @Override
-            public void onHttpFrameReceived(IHttpFrame httpFrame,HttpStates receptionStates, IHttpStream httpStream) {
-
-                //check if http frame is OK
-                if (receptionStates == HttpStates.HTTP_FRAME_OK) {
-
-                    //you can check here http frame type (response or request frame)
-                    if (httpFrame.isHttpRequestFrame()) {
-
-                        //we want to send a message to client for http GET request on page with uri /index
-                        if (httpFrame.getMethod().equals("GET") && httpFrame.getUri().equals("/index")) {
-
-                            HashMap<String, String> headers = new HashMap<String, String>();
-
-                            String defaultPage = "Hello from custom Java HTTP Server\r\nThis page has been seen "
-                                    + PAGE_VIEW_COUNT + " times before.";
-
-                            // return default html page for this HTTP Server
-                            httpStream.writeHttpResponseFrame(new HttpResponseFrame(
-                                            StatusCodeList.OK, new HttpVersion(1, 1), headers, defaultPage.getBytes()));
-                            PAGE_VIEW_COUNT++;
-                        }
-                    }
-                }
-            }
-        });
-```
-Featured exemple display a message in client's browser when uri /index is called. When refreshing page counter will be incremented on displayed page.
-
-``IHttpFrame`` has following useful methods :
-* boolean isHttpRequestFrame() 
-* boolean isHttpResponseFrame()
-* String getMethod()
-* String getUri()
-* HashMap<String, String> getHeaders()
-* int getStatusCode()
-* String getReasonPhrase()
-* HttpVersion getHttpVersion()
-
-``HttpStates`` enum can have following states : 
-* MALFORMED_HTTP_FRAME
-* HTTP_FRAME_OK
-* HTTP_READING_ERROR
-* HTTP_WRONG_VERSION
-* HTTP_STATE_NONE
-* SOCKET_ERROR
-* HTTP_BODY_PARSE_ERROR
-
-``IHttpStream`` enables you to answered to http client with : 
-* writeHttpResponseFrame(IHttpResponseFrame httpFrame)
-* writeHttpRequestFrame(IHttpFrame httpFrame)
-
-``IHttpResponseFrame`` and ``IHttpFrame`` are interface issued from http-endec-java project in http://akinaru.github.io/http-endec-java/
+[C++ QT4 Websocket server README](http://akinaru.github.io/websocket-non-blocking-cpp/)
 
 <hr/>
 
-<b>How to launch a SSL secured HTTP server ?</b>
+<h2>Description of Java HTTP Server Socket</h2>
 
-```
-HttpServer server = new HttpServer(PORT);
-
-server.setSsl(true); // set SSL to true (default is false)
-
-```
-
-Then you set your keystore, trustore, type of these certificates, filepath and passwords : 
-
-```
-server.setSSLParams(String KEYSTORE_DEFAULT_TYPE,
-            String KEYSTORE_FILE_PATH,
-            String TRUSTORE_FILE_PATH,
-            String SSL_PROTOCOL,
-            String KEYSTORE_PASSWORD,
-            String TRUSTORE_PASSWORD);
-```
-
-Here is the description of all of these parameters : 
-
-* KEYSTORE_DEFAULT_TYPE : type of certificates used as keystore, it usually contains public and private certificates, common format are PKCS12 and JKS
-* TRUSTORE_DEFAULT_TYPE : type of certificates used as trustore, it should contain list of CA cert your server will trust
-* KEYSTORE_FILE_PATH : file path to keystore cert file
-* TRUSTORE_FILE_PATH: file path to trustore cert file
-* SSL_PROTOCOL : ssl protocol used 
-* KEYSTORE_PASSWORD : keystore file password
-* TRUSTORE_PASSWORD : trustore file password
-
-Eventually add event listener as described above and start HTTP server : 
-
-```
-server.start();
-```
+[java HTTP server socket README](server/server-socket/blocking/java/README.md)
 
 <hr/>
 
+<h2>Description of Java HTTP Client Socket</h2>
 
-<h2>Description of Java Client Socket</h2>
+[java HTTP client socket README](client/socket-client/java/README.md)
 
-[java client socket README](client/socket-client/java/README.md)
+<hr/>
+
+<h2>Description of Java UDP Server/Client Socket</h2>
+
+[java UDP client/server socket README](udp/java/README.md)
 
 <hr/>
 
-<b>Java UDP Server/Client</b>
+<h2>Description of C++ Non Blocking HTTP Server socket</h2>
 
-UDP Server and client are located in udp folder. One exemple features interactions between UDP server and UDP client in JAVA.
-
-The following will start an UDP socket (running as server) on port defined by PORT : 
-
-```
-UdpServer udpServer = new UdpServer(PORT);
-
-//add a server event listener
-udpServer.addServerEventListener(new IUdpServerEventListener() {
-
-    @Override
-    public void onDataReceived(byte[] data, IUdpServer server,
-            InetAddress clientAddress, int clientPort) {
-        
-        String dataStr = new String(data);
-
-        System.out
-                .println("[UDP SERVER] new data receveived in server : "
-                        + dataStr);
-    }
-});
-
-// UDP server is runnable : just run it into a thread ( naming the thread is recommended for debuggging )
-Thread serverThread = new Thread(udpServer,"UDP_SERVER");
-
-// start udp server
-serverThread.start();
-
-```
-
-UDP client socket will broadcast data to this server : 
-
-```
-UdpClient udpClient = new UdpClient(InetAddress.getByName(SERVER_BROADCAST_IP), PORT);
-
-udpClient.addClientEventListener(new IudpEventListener() {
-
-    @Override
-    public void onDataReceived(byte[] data) {
-        System.out
-                .println("[UDP CLIENT] new data receveived in client : "
-                        + new String(data));
-    }
-});
-```
-
-To send a string message use : ``udpClient.sendMessage(String message);`` method : 
-
-```
-udpClient.sendMessage("HELLO");
-```
-
-Mecanism of event listener is exactly the same as explained before for client socket in Java or for Java websocket lib (http://akinaru.github.io/websocket-java/).
-
-``onDataReceived(byte[] data)`` for UDP client callback will enable you to get incoming data response from UDP server.
-
-``onDataReceived(byte[] data, IUdpServer server,InetAddress clientAddress, int clientPort) for UDP server callback will enable you to get incoming data from the client and to redispatch any response you want to this client thanks to ``IUdpServer`` object that permits you to write a ``byte[]`` data like this :
-
-``
-server.write("Hello from websocket server".getBytes(),clientAddress, clientPort);
-``
-
-With address and port, UDP server will send your data back to client.
-
-For now, I didn't put in place a timer mecanisme on client side, to close client receiving thread. 
-TODO : timeout for client UDP socket waiting for response
+[C++ Non Blocking HTTP Server socket README](server/server-socket/non-blocking/cpp/README.md)
 
 <hr/>
+
+<b>TroubleShooting</b>
 
 <b>Keystore : public and private server certificates</b>
 
@@ -360,38 +196,6 @@ convert ca cert to jks :
 Thus, you will have : ``String TRUSTORE_DEFAULT_TYPE = "JKS"``
 
 <hr/>
-
-
-<b>QT C++ Non Blocking HTTP server socket</b>
-
-Instantiation and start : 
-
-```
-HttpServer server;
-
-server.listen(QHostAddress(IP),PORT);
-
-```
-
-
-You can add socket event listener that notify you of incominh http request/response 
-
-```
-ClientSocketHandler *clientHandler = new ClientSocketHandler();
-
-server.addClientEventListener(clientHandler);
-```
-
-``ClientSocketHandler`` inherit from interface ``IClientEventListener`` which contains following methods :
-* ``void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer);`` : notify when http request is received
-* ``void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer);`` : notify when http response is received
-
-You can send http response or http request back to the client with ``IHttpClient`` got from previous callback.
-
- ``IHttpClient`` has a ``sendHttpMessage(std::string message)`` for sending http message back to client
-
-<hr/>
-<b>TroubleShooting</b>
 
 <i>Bad certificate | Unknown CA errors</i>
 
@@ -452,12 +256,6 @@ With last release of easy-rsa, you can build your own key with the following :
 * ``./build-server-full myServer`` : will build for you public cert and private cert signed with CA for server
 * ``./build-client-full myClient`` : will build for you public cert and private cert signed with CA for client
 
-<b>How to close my HTTP server ?</b>
-
-``server.closeServer();``
-
-<hr/>
-
 <b>COMMAND LINE SYNTAX</b> 
 
 The following will open http server on port 4343 (default port value for my exemple)
@@ -472,59 +270,14 @@ This exemple is launched from /release folder
 
 <hr/>
 
-<b>Java HTTP server : Exemple with Browser HTTP client</b>
-
-This exemple is located in server/server-socket/blocking/no-ssl/java or server/server-socket/blocking/ssl/java
-
-* Launch the HTTP server on port 8443
-* On your browser go to url http://127.0.0.1:8443/index
-
-![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSide.png)
-
-
-<b>QT C++ non-blocking HTTP server : Exemple with Browser HTTP client</b>
-
-This exemple is located in server/server-socket/non-blocking/no-ssl/cpp or server/server-socket/non-blocking/ssl/cpp
-
-* Launch the HTTP server on port 8443
-* On your browser go to url http://127.0.0.1:8443/index
-
-![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSideHttpCpp.png)
-
-<b>Java HTTP client : Exemple with Java socket server <-> Java socket client</b>
-
-This exemple is located in client/socket-client/no-ssl/java or client/socket-client/ssl/java
-
-Launch your LaunchClient java exec, it will :
-* open a server on 127.0.0.1:8443 (ssl or not)
-* build a client socket to be connecte to latter server later
-* ask you a set of command which will match HTTP request to be sent to this server. Each command is mapped in the server and a response is sent back to the client.
-
-![client side](https://raw.github.com/akinaru/socket-multiplatform/master/client_to_server_java.png)
-
-<hr/>
-
-<b>Java UDP Server <-> Java UDP client communications</b>
-
-This exemple is located in udp/ for the class : fr.bmartel.network.LaunchUdpSocket
-=> This will launch one UDP server and one UDP client that connect to this server. UDP Server will send back a response to UDP client
-
-Like all other socket connections lib, event listeners are used to catch data :
-
-![udp communication](https://raw.github.com/akinaru/socket-multiplatform/master/udp_client_to_server_java.png)
-
-<hr/>
-
 <b>Java</b>
 
-* Project is JRE 1.7 compliant
-* You can build it with ant => build.xml
+* Projects are JRE 1.7 compliant
+* You can build with ant => build.xml
 * Development on Eclipse 
 
 <b>C++ QT</b>
 
-* Project is Qt4 compliant
-* You can build it with qmake
+* Project are Qt4 compliant
+* You can build with qmake
 * Development on QtCreator
-
-TODO : timeout for client UDP socket waiting for response

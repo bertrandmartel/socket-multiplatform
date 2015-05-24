@@ -204,3 +204,16 @@ cd ./client/socket-client/java/release
 java -cp clientsocket-1.0.jar:../libs/http-endec-1.0.jar:../libs/libsocket-1.0.jar fr.bmartel.network.LaunchClient
 
 ```
+
+<b>Java HTTP client : Exemple with Java socket server <-> Java socket client</b>
+
+This exemple is located in client/socket-client/no-ssl/java or client/socket-client/java
+
+Launch your LaunchClient java exec, it will :
+* open a server on 127.0.0.1:8443 (ssl or not)
+* build a client socket to be connecte to latter server later
+* ask you a set of command which will match HTTP request to be sent to this server. Each command is mapped in the server and a response is sent back to the client.
+
+![client side](https://raw.github.com/akinaru/socket-multiplatform/master/client_to_server_java.png)
+
+<hr/>
