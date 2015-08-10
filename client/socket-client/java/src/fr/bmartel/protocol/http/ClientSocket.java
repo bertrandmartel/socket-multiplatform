@@ -37,9 +37,13 @@ import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 import fr.bmartel.protocol.http.states.HttpStates;
@@ -79,6 +83,8 @@ public class ClientSocket implements IClientSocket {
 	/** set ssl encryption or not */
 	private boolean ssl = false;
 
+	private boolean checkCertificate = true;
+
 	/**
 	 * keystore certificate type
 	 */
@@ -102,7 +108,7 @@ public class ClientSocket implements IClientSocket {
 	/**
 	 * ssl protocol used
 	 */
-	private String sslProtocol = "";
+	private String sslProtocol = "TLS";
 
 	/**
 	 * keystore file password
@@ -164,62 +170,79 @@ public class ClientSocket implements IClientSocket {
 			socket = null;
 
 			if (ssl) {
-				/* initial server keystore instance */
-				KeyStore ks = KeyStore.getInstance(keystoreDefaultType);
 
-				if (!keystoreFile.equals("")) {
-					/* load keystore from file */
-					ks.load(new FileInputStream(keystoreFile),
-							keystorePassword.toCharArray());
+				SSLContext ctx = null;
+
+				if (checkCertificate) {
+					/* initial server keystore instance */
+					KeyStore ks = KeyStore.getInstance(keystoreDefaultType);
+
+					if (!keystoreFile.equals("")) {
+						/* load keystore from file */
+						ks.load(new FileInputStream(keystoreFile), keystorePassword.toCharArray());
+					} else {
+						ks.load(null, null);
+					}
+					/*
+					 * assign a new keystore containing all certificated to be
+					 * trusted
+					 */
+					KeyStore tks = KeyStore.getInstance(trustoreDefaultType);
+
+					/* load this keystore from file */
+					tks.load(new FileInputStream(trustoreFile), trustorePassword.toCharArray());
+
+					/* initialize key manager factory with chosen algorithm */
+					KeyManagerFactory kmf = null;
+
+					if (!keystoreFile.equals("")) {
+						kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+						/* initialize key manager factory with initial keystore */
+						kmf.init(ks, keystorePassword.toCharArray());
+					}
+
+					/* initialize trust manager factory with chosen algorithm */
+					TrustManagerFactory tmf;
+
+					tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+
+					/*
+					 * initialize trust manager factory with keystore containing
+					 * certificates to be trusted
+					 */
+					tmf.init(tks);
+
+					/* get SSL context chosen algorithm */
+					ctx = SSLContext.getInstance(sslProtocol);
+					/*
+					 * initialize SSL context with key manager and trust
+					 * managers
+					 */
+					if (kmf != null) {
+						ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+					} else {
+						ctx.init(null, tmf.getTrustManagers(), null);
+					}
 				} else {
-					ks.load(null, null);
-				}
-				/*
-				 * assign a new keystore containing all certificated to be
-				 * trusted
-				 */
-				KeyStore tks = KeyStore.getInstance(trustoreDefaultType);
 
-				/* load this keystore from file */
-				tks.load(new FileInputStream(trustoreFile),
-						trustorePassword.toCharArray());
+					/* get SSL context chosen algorithm */
+					ctx = SSLContext.getInstance(sslProtocol);
 
-				/* initialize key manager factory with chosen algorithm */
-				KeyManagerFactory kmf = null;
+					if (!checkCertificate) {
+						ctx.init(null, new TrustManager[] { new TrustAllX509TrustManager() }, new java.security.SecureRandom());
+						HttpsURLConnection.setDefaultSSLSocketFactory(ctx.getSocketFactory());
+						HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+							@Override
+							public boolean verify(String arg0, SSLSession arg1) {
+								return true;
+							}
+						});
+					} else {
 
-				if (!keystoreFile.equals("")) {
-					kmf = KeyManagerFactory.getInstance(KeyManagerFactory
-							.getDefaultAlgorithm());
-					/* initialize key manager factory with initial keystore */
-					kmf.init(ks, keystorePassword.toCharArray());
+					}
 				}
 
-				/* initialize trust manager factory with chosen algorithm */
-				TrustManagerFactory tmf;
-
-				tmf = TrustManagerFactory.getInstance(TrustManagerFactory
-						.getDefaultAlgorithm());
-
-				/*
-				 * initialize trust manager factory with keystore containing
-				 * certificates to be trusted
-				 */
-				tmf.init(tks);
-
-				/* get SSL context chosen algorithm */
-				SSLContext ctx = SSLContext.getInstance(sslProtocol);
-
-				/*
-				 * initialize SSL context with key manager and trust managers
-				 */
-				if (kmf != null) {
-					ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
-				} else {
-					ctx.init(null, tmf.getTrustManagers(), null);
-				}
-
-				SSLSocketFactory sslserversocketfactory = ctx
-						.getSocketFactory();
+				SSLSocketFactory sslserversocketfactory = ctx.getSocketFactory();
 
 				/* create a SSL socket connection */
 				socket = sslserversocketfactory.createSocket(hostname, port);
@@ -251,15 +274,11 @@ public class ClientSocket implements IClientSocket {
 						try {
 							HttpFrame frame = new HttpFrame();
 
-							if (!socket.isClosed()) {
-								HttpStates httpStates = frame.parseHttp(socket
-										.getInputStream());
+							if (socket != null && !socket.isClosed()) {
+								HttpStates httpStates = frame.parseHttp(socket.getInputStream());
 
 								for (int i = 0; i < clientListenerList.size(); i++) {
-									clientListenerList.get(i)
-											.onIncomingHttpFrame(frame,
-													httpStates,
-													ClientSocket.this);
+									clientListenerList.get(i).onIncomingHttpFrame(frame, httpStates, ClientSocket.this);
 								}
 
 								if (httpStates == HttpStates.HTTP_READING_ERROR) {
@@ -388,6 +407,10 @@ public class ClientSocket implements IClientSocket {
 		this.ssl = ssl;
 	}
 
+	public void checkCertificate(boolean state) {
+		checkCertificate = state;
+	}
+
 	/**
 	 * Set ssl parameters
 	 * 
@@ -406,10 +429,8 @@ public class ClientSocket implements IClientSocket {
 	 * @param trustorePassword
 	 *            trustore password
 	 */
-	public void setSSLParams(String keystoreDefaultType,
-			String trustoreDefaultType, String keystoreFile,
-			String trustoreFile, String sslProtocol, String keystorePassword,
-			String trustorePassword) {
+	public void setSSLParams(String keystoreDefaultType, String trustoreDefaultType, String keystoreFile, String trustoreFile, String sslProtocol,
+			String keystorePassword, String trustorePassword) {
 		this.keystoreDefaultType = keystoreDefaultType;
 		this.trustoreDefaultType = trustoreDefaultType;
 		this.keystoreFile = keystoreFile;
