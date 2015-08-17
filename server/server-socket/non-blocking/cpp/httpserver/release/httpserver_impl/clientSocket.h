@@ -37,7 +37,7 @@ public:
     int close();
 
     /**
-     * Send a message to websocket client
+     * Send a message to HTTP client
      *
      * @param string
      * 		Message to be sent to client

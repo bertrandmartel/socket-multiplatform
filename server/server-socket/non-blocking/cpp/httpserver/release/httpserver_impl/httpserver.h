@@ -1,5 +1,28 @@
 /**
-    websocketserver.h
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Bertrand Martel
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+/**
+    HttpServer.h
 
     Http server main process class
 
@@ -30,7 +53,7 @@
 
 /**
  * @brief The HttpServer class
- *      Websocket server main process class
+ *      Http server main process class
  *
  * <ul>
  *  <li>manage incoming connections</li>
@@ -46,7 +69,7 @@ public:
 
     /**
      * @brief HttpServer
-     *      websocket server build object
+     *      Http server build object
      * @param parent
      */
     HttpServer(QObject * parent = 0);
@@ -60,7 +83,7 @@ public:
     ~HttpServer();
 
     /**
-    * @brief WebsocketServer::addClientEventListener
+    * @brief HttpServer::addClientEventListener
     *      add a client event listener to list
     * @param clientListener
     *      client listener
@@ -68,14 +91,14 @@ public:
     void addClientEventListener(IClientEventListener * clientListener);
 
     /**
-     * @brief WebsocketServer::setSSL
-     *      set websocket server to secured Websocket server
+     * @brief HttpServer::setSSL
+     *      set Http server to secured Http server
      * @param use_ssl
      */
     void setSSL(bool use_ssl);
 
     /**
-     * @brief WebsocketServer::setPublicCert
+     * @brief HttpServer::setPublicCert
      *      set public server cert
      * @param cert
      *      public certificate
@@ -83,7 +106,7 @@ public:
     void setPublicCert(QSslCertificate cert);
 
     /**
-     * @brief WebsocketServer::setCaCert
+     * @brief HttpServer::setCaCert
      *      set certification authoritycert
      * @param cert
      *      certification authority cert
@@ -91,7 +114,7 @@ public:
     void setCaCert(QList< QSslCertificate > cert);
 
     /**
-     * @brief WebsocketServer::setPrivateCert
+     * @brief HttpServer::setPrivateCert
      *      set private certificate
      * @param cert
      *      private certificate
@@ -165,7 +188,7 @@ private:
     void incomingConnection(int socketDescriptor);
 
     /**
-     * @brief WebsocketServer::startServerEncryption
+     * @brief HttpServer::startServerEncryption
      *      add respective certificates for SSL encryption
      *
      * @param clientSocket
@@ -174,7 +197,7 @@ private:
     void startServerEncryption(QSslSocket* clientSocket);
 
     /**
-     * @brief WebsocketServer::connectSocketSignals
+     * @brief HttpServer::connectSocketSignals
      *      connect signals to slots : we take the maximum of slots here to manage errors quickly
      * @param clientSocket
      *      client socket incoming
@@ -182,7 +205,7 @@ private:
     void connectSocketSignals(QSslSocket* clientSocket);
 
     /**
-     * @brief WebsocketServer::closeClientSocket
+     * @brief HttpServer::closeClientSocket
      *      close client socket function
      * @param socket
      *      client socket
@@ -223,13 +246,13 @@ private:
 
     /**
      * @brief debug
-     *      debug state for websocket server
+     *      debug state for Http server
      */
     bool debug;
 
     /**
      * @brief ssl
-     *      define if websocket protocol must use encryption or not
+     *      define if Http protocol must use encryption or not
      */
     bool ssl;
 
