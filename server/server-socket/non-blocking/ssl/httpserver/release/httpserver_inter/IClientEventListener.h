@@ -30,7 +30,7 @@ public :
      * @param message
      * 		message delivered
      */
-    virtual void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer)= 0;
+    virtual void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address)= 0;
 
     /**
      * called when an http response has been received from client
@@ -40,7 +40,7 @@ public :
      * @param message
      * 		message delivered
      */
-    virtual void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer)= 0;
+    virtual void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address)= 0;
 
 };
 

@@ -49,7 +49,7 @@ using namespace std;
 
 static int port = 8443;
 static string ip="127.0.0.1";
-static bool useSSL = true;
+static bool useSSL = false;
 
 int main(int argc, char *argv[])
 {

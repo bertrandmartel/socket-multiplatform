@@ -41,3 +41,7 @@ else:unix: LIBS += -L$$PWD/../externalLib/ -lhttpdecoder
 
 INCLUDEPATH += $$PWD/../externalLib
 DEPENDPATH += $$PWD/../externalLib
+
+QMAKE_CLEAN += -r $${PWD}/$${DESTDIR}
+
+QMAKE_POST_LINK +=$$quote(rsync -avm --include=*/ --include=*.h --exclude=* $${PWD}/$${SOURCES_DIR}/ $${PWD}/$${DESTDIR})

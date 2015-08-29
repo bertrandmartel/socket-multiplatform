@@ -55,8 +55,8 @@ std::map<QSslSocket*,ClientSocket > HttpServer::socketClientList;
  *
  * @param parent
  */
-HttpServer::HttpServer(QObject* parent): QTcpServer(parent)
-{
+HttpServer::HttpServer(QObject* parent): QTcpServer(parent){
+
     connect(this, SIGNAL(newConnection()), this, SLOT(handleNewConnection()));
     consumer=new httpconsumer;
     debug=true;
@@ -70,8 +70,8 @@ HttpServer::HttpServer(QObject* parent): QTcpServer(parent)
  *      set HTTP server to secured HTTP server
  * @param use_ssl
  */
-void HttpServer::setSSL(bool use_ssl)
-{
+void HttpServer::setSSL(bool use_ssl){
+
     ssl=use_ssl;
 }
 
@@ -81,8 +81,8 @@ void HttpServer::setSSL(bool use_ssl)
  * @param cert
  *      public certificate
  */
-void HttpServer::setPublicCert(QSslCertificate cert)
-{
+void HttpServer::setPublicCert(QSslCertificate cert){
+
     localCertificate=cert;
 }
 
@@ -92,8 +92,8 @@ void HttpServer::setPublicCert(QSslCertificate cert)
  * @param cert
  *      certification authority cert
  */
-void HttpServer::setCaCert(QList< QSslCertificate > cert)
-{
+void HttpServer::setCaCert(QList< QSslCertificate > cert){
+
     caCertificate=cert;
 }
 
@@ -103,8 +103,8 @@ void HttpServer::setCaCert(QList< QSslCertificate > cert)
  * @param cert
  *      private certificate
  */
-void HttpServer::setPrivateCert(QSslKey key)
-{
+void HttpServer::setPrivateCert(QSslKey key){
+
     keyCertificate=key;
 }
 
@@ -112,8 +112,8 @@ void HttpServer::setPrivateCert(QSslKey key)
  * @brief HttpServer::handleNewConnection
  *      a new connection has come to server
  */
-void HttpServer::handleNewConnection()
-{
+void HttpServer::handleNewConnection(){
+
     QSslSocket *clientSocket;
 
     clientSocket = qobject_cast<QSslSocket *>(sender());
@@ -136,8 +136,8 @@ void HttpServer::handleNewConnection()
         startServerEncryption((QSslSocket *) clientSocket);
 }
 
-void HttpServer::incomingConnection(int socketDescriptor)
-{
+void HttpServer::incomingConnection(int socketDescriptor){
+
     if (debug)
         qDebug("incomingConnection(%d)", (int)socketDescriptor);
 
@@ -150,8 +150,8 @@ void HttpServer::incomingConnection(int socketDescriptor)
 
 }
 
-QSslSocket* HttpServer::nextPendingConnection()
-{
+QSslSocket* HttpServer::nextPendingConnection(){
+
     if (debug)
         cout << "pending connection" << endl;
 
@@ -167,8 +167,7 @@ QSslSocket* HttpServer::nextPendingConnection()
  * @param clientSocket
  *      client socket incoming
  */
-void HttpServer::connectSocketSignals (QSslSocket* clientSocket)
-{
+void HttpServer::connectSocketSignals (QSslSocket* clientSocket){
     //slots for all socket types
     connect(clientSocket, SIGNAL(readyRead())                        ,this, SLOT(incomingData()));
     connect(clientSocket, SIGNAL(connected())                        ,this, SLOT(slot_connected()));
@@ -177,8 +176,8 @@ void HttpServer::connectSocketSignals (QSslSocket* clientSocket)
     connect(clientSocket, SIGNAL(hostFound())                        ,this, SLOT(slot_hostFound()));
     connect(clientSocket, SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &, QAuthenticator *)),this, SLOT(slot_proxyAuthenticationRequired(const QNetworkProxy &, QAuthenticator *)));
     connect(clientSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),this, SLOT(slot_stateChanged(QAbstractSocket::SocketState)));
-    if (ssl)
-    {
+
+    if (ssl){
         //slots for ssl cert handshake process and error monitoring
         connect(clientSocket, SIGNAL(encrypted())                        ,this, SLOT(slot_encrypted()));
         connect(clientSocket, SIGNAL(encryptedBytesWritten(qint64))      ,this, SLOT(slot_encryptedBytesWritten(qint64)));
@@ -195,10 +194,10 @@ void HttpServer::connectSocketSignals (QSslSocket* clientSocket)
  * @param clientSocket
  *      ssl client socket
  */
-void HttpServer::startServerEncryption (QSslSocket* clientSocket)
-{
-    if (keyCertificate.isNull() || localCertificate.isNull() || caCertificate.isEmpty())
-    {
+void HttpServer::startServerEncryption (QSslSocket* clientSocket){
+
+    if (keyCertificate.isNull() || localCertificate.isNull() || caCertificate.isEmpty()){
+
         cout << "Error invalid certificates" << endl;
         clientSocket->close();
         return;
@@ -235,8 +234,7 @@ void HttpServer::startServerEncryption (QSslSocket* clientSocket)
  * @brief HttpServer::slot_disconnected
  *      slot used when one client socket disconnect form HTTP server
  */
-void HttpServer::slot_disconnected()
-{
+void HttpServer::slot_disconnected(){
     if (debug)
         qDebug() <<  "slot_disconnected() : Socket disconnected..." << endl;
 
@@ -252,47 +250,39 @@ void HttpServer::slot_disconnected()
     client->deleteLater();
 }
 
-void HttpServer::ready()
-{
+void HttpServer::ready(){
 }
 
-void HttpServer::slot_encryptedBytesWritten (qint64 written)
-{
+void HttpServer::slot_encryptedBytesWritten (qint64 written){
     if (debug)
         qDebug("QMyServer::slot_encryptedBytesWritten(%ld)", (long) written);
 }
 
-void HttpServer::slot_modeChanged (QSslSocket::SslMode mode)
-{
+void HttpServer::slot_modeChanged (QSslSocket::SslMode mode){
     if (debug)
         qDebug("QMyServer::slot_modeChanged(%d)", mode);
 }
 
-void HttpServer::slot_peerVerifyError (const QSslError &)
-{
+void HttpServer::slot_peerVerifyError (const QSslError &){
     if (debug)
         qDebug("QMyServer::slot_peerVerifyError");
 }
 
-void HttpServer::slot_sslErrors (const QList<QSslError> &)
-{
+void HttpServer::slot_sslErrors (const QList<QSslError> &){
     if (debug)
         qDebug("QMyServer::slot_sslErrors");
 }
 
-void HttpServer::slot_encrypted()
-{
+void HttpServer::slot_encrypted(){
     if (debug)
         qDebug("QMyServer::slot_encrypted");
 }
-void HttpServer::slot_connected ()
-{
+void HttpServer::slot_connected (){
     if (debug)
         qDebug("QMyServer::slot_connected");
 }
 
-void HttpServer::slot_error (QAbstractSocket::SocketError err)
-{
+void HttpServer::slot_error (QAbstractSocket::SocketError err){
     QSslSocket *client = qobject_cast<QSslSocket *>(sender());
 
     if (debug)
@@ -302,20 +292,17 @@ void HttpServer::slot_error (QAbstractSocket::SocketError err)
         qDebug() << __PRETTY_FUNCTION__ << err << client->errorString();
 }
 
-void HttpServer::slot_hostFound ()
-{
+void HttpServer::slot_hostFound (){
     if (debug)
         qDebug("QMyServer::slot_hostFound");
 }
 
-void HttpServer::slot_proxyAuthenticationRequired (const QNetworkProxy &, QAuthenticator *)
-{
+void HttpServer::slot_proxyAuthenticationRequired (const QNetworkProxy &, QAuthenticator *){
     if (debug)
         qDebug("QMyServer::slot_proxyAuthenticationRequired");
 }
 
-void HttpServer::slot_stateChanged (QAbstractSocket::SocketState state)
-{
+void HttpServer::slot_stateChanged (QAbstractSocket::SocketState state){
     if (debug)
         qDebug() << "QMyServer::slot_stateChanged(" << state << ")";
 }
@@ -324,8 +311,8 @@ void HttpServer::slot_stateChanged (QAbstractSocket::SocketState state)
  * @brief HttpServer::~HttpServer
  *      desctruct => delete pointers
  */
-HttpServer::~HttpServer()
-{
+HttpServer::~HttpServer(){
+
   delete consumer;
   consumer=0;
 }
@@ -334,8 +321,8 @@ HttpServer::~HttpServer()
  * @brief HttpServer::incomingData
  *      that slot is for data coming from client socket
  */
-void HttpServer::incomingData()
-{
+void HttpServer::incomingData(){
+
     QSslSocket *clientSocket = qobject_cast<QSslSocket *>(sender());
 
     //we manage socket client object from static list (thats where we store client)
@@ -348,28 +335,24 @@ void HttpServer::incomingData()
     //http streaming data is decoded here
     decoder.httpdecode(consumer,&data);
 
-    if (consumer->getHttpFrameList().size()>0)
-    {
+    if (consumer->getHttpFrameList().size()>0){
+
         int count = consumer->getHttpFrameList().size()-1;
 
         //iterate through all http streaming frames
-        while (containsHttpProcessedFrames(consumer->getHttpFrameList()))
-        {
+        while (containsHttpProcessedFrames(consumer->getHttpFrameList())){
+
             //take into account only http frames that have been processed successfully
-            if (consumer->getHttpFrameList().at(count)->isFinishedProcessing())
-            {
-                if (strcmp(consumer->getHttpFrameList().at(count)->getMethod().data(),"")==0)
-                {
-                    for (unsigned int i = 0; i  < this->clientEventListenerList.size();i++)
-                    {
-                        this->clientEventListenerList.at(i)->onHttpResponseReceived(obj,consumer->getHttpFrameList().at(count));
+            if (consumer->getHttpFrameList().at(count)->isFinishedProcessing()){
+
+                if (strcmp(consumer->getHttpFrameList().at(count)->getMethod().data(),"")==0){
+                    for (unsigned int i = 0; i  < this->clientEventListenerList.size();i++){
+                        this->clientEventListenerList.at(i)->onHttpResponseReceived(obj,consumer->getHttpFrameList().at(count),obj.getPeerAddress());
                     }
                 }
-                else
-                {
-                    for (unsigned int i = 0; i  < this->clientEventListenerList.size();i++)
-                    {
-                        this->clientEventListenerList.at(i)->onHttpRequestReceived(obj,consumer->getHttpFrameList().at(count));
+                else{
+                    for (unsigned int i = 0; i  < this->clientEventListenerList.size();i++){
+                        this->clientEventListenerList.at(i)->onHttpRequestReceived(obj,consumer->getHttpFrameList().at(count),obj.getPeerAddress());
                     }
                 }
 
@@ -379,8 +362,7 @@ void HttpServer::incomingData()
                 consumer->setHttpFrameList(&frameList);
 
             }
-            else
-            {
+            else{
                 cout << "Current HTTP frame has not been processed correctly." << endl;
             }
             count--;
@@ -403,12 +385,9 @@ void HttpServer::incomingData()
  *      list of http frames
  * @return
  */
-bool HttpServer::containsHttpProcessedFrames(std::vector<Ihttpframe*> frameList)
-{
-    for (int i = 0; i < frameList.size();i++)
-    {
-        if (frameList.at(i)->isFinishedProcessing())
-        {
+bool HttpServer::containsHttpProcessedFrames(std::vector<Ihttpframe*> frameList){
+    for (int i = 0; i < frameList.size();i++){
+        if (frameList.at(i)->isFinishedProcessing()){
             return true;
         }
     }
@@ -421,8 +400,7 @@ bool HttpServer::containsHttpProcessedFrames(std::vector<Ihttpframe*> frameList)
  * @param clientListener
  *      client listener
  */
-void HttpServer::addClientEventListener(IClientEventListener *clientListener)
-{
+void HttpServer::addClientEventListener(IClientEventListener *clientListener){
     this->clientEventListenerList.push_back(clientListener);
 }
 
@@ -432,8 +410,7 @@ void HttpServer::addClientEventListener(IClientEventListener *clientListener)
  * @param socket
  *      client socket
  */
-void HttpServer::closeClientSocket(QSslSocket* socket)
-{
+void HttpServer::closeClientSocket(QSslSocket* socket){
     cout << "closing socket..." << endl;
 
     if (socket->isOpen())

@@ -32,9 +32,9 @@ ClientSocketHandler::~ClientSocketHandler()
  * @param message
  * 		message delivered
  */
-void ClientSocketHandler::onHttpResponseReceived(IHttpClient &client,Ihttpframe * frame)
+void ClientSocketHandler::onHttpResponseReceived(IHttpClient &client,Ihttpframe * frame,std::string peer_address)
 {
-    cout << "http response received" << endl;
+    cout << "http response received for client " << peer_address << endl;
     client.sendHttpMessage("OK I received your message !");
 }
 
@@ -46,9 +46,9 @@ void ClientSocketHandler::onHttpResponseReceived(IHttpClient &client,Ihttpframe 
  * @param message
  * 		message delivered
  */
-void ClientSocketHandler::onHttpRequestReceived(IHttpClient &client,Ihttpframe * frame)
+void ClientSocketHandler::onHttpRequestReceived(IHttpClient &client,Ihttpframe * frame,std::string peer_address)
 {
-    cout << "Http request received" << endl;
+    cout << "Http request received for client " << peer_address << endl;
 
     if (strcmp(frame->getMethod().data(),"GET")==0 && strcmp(frame->getUri().data(),"/index")==0)
     {

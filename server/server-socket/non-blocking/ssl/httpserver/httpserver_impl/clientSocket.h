@@ -29,6 +29,13 @@ public:
     ~ClientSocket();
 
     /**
+     * @brief getPeerAddress
+     *      Retrieve client ip address
+     * @return
+     */
+    std::string getPeerAddress();
+
+    /**
      *  close websoclet client object
      *
      * @return

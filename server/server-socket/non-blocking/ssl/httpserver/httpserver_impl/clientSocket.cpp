@@ -10,6 +10,7 @@
 
 #include <QTcpSocket>
 #include <iostream>
+#include "QHostAddress"
 
 using namespace std;
 
@@ -29,6 +30,15 @@ ClientSocket::ClientSocket()
 ClientSocket::~ClientSocket()
 {
     //client socket should NOT be deleted here => connection MUST be deleted in HttpServer class
+}
+
+/**
+ * @brief getPeerAddress
+ *      Retrieve client ip address
+ * @return
+ */
+std::string ClientSocket::getPeerAddress(){
+    return clientSocket->peerAddress().toString().toStdString();
 }
 
 /**

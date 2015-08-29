@@ -20,8 +20,8 @@ server.addClientEventListener(clientHandler);
 ```
 
 ``ClientSocketHandler`` inherit from interface ``IClientEventListener`` which contains following methods :
-* ``void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer);`` : notify when http request is received
-* ``void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer);`` : notify when http response is received
+* ``void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address);`` : notify when http request is received
+* ``void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address);`` : notify when http response is received
 
 You can send http response or http request back to the client with ``IHttpClient`` got from previous callback.
 

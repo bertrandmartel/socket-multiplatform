@@ -34,7 +34,7 @@ class ClientSocketHandler :  public IClientEventListener
          * @param message
          * 		message delivered
          */
-        void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer);
+        void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address);
 
         /**
          * called when an http response has been received from client
@@ -44,7 +44,7 @@ class ClientSocketHandler :  public IClientEventListener
          * @param message
          * 		message delivered
          */
-        void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer);
+        void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address);
 };
 
 #endif // CLIENTSOCKETHANDLER_H
