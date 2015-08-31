@@ -12,7 +12,7 @@
 #include <QByteArray>
 #include <QTcpSocket>
 #include <QList>
-#include "httpserver_inter/IHttpClient.h"
+#include "httpserverinter/IHttpClient.h"
 
 class ClientSocket : public IHttpClient
 {

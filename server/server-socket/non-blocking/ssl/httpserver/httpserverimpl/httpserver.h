@@ -48,7 +48,7 @@
 #include "QSslCertificate"
 #include "QList"
 #include "QSslKey"
-#include "httpserver_inter/IClientEventListener.h"
+#include "httpserverinter/IClientEventListener.h"
 #include <QtCore/QQueue>
 
 /**

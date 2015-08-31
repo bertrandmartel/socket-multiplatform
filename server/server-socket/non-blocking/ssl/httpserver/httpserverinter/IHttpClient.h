@@ -22,22 +22,30 @@
  * THE SOFTWARE.
  */
 /**
-    httpstates.h
-    HTTP parser states
-    Regroup all states present in http parser
+    IWebsocketClient.h
+
+    Define generic template for http client socket
 
     @author Bertrand Martel
     @version 1.0
 */
-#ifndef HTTPSTATES_H
-#define HTTPSTATES_H
+#ifndef IHTTPCLIENT_H
+#define IHTTPCLIENT_H
+#include "string"
 
-#define HTTP_STATE_INIT     0
+class IHttpClient
+{
 
-#define HTTP_STATE_VERSION  1
+public :
+    /**
+     * Send http message to client
+     *
+     * @param string
+     * 		Message to be sent to client
+     * @return
+     *		0 if success -1 if error
+     */
+    virtual int sendHttpMessage(std::string message)= 0;
+};
 
-#define HTTP_STATE_HEADERS  2
-
-#define HTTP_STATE_BODY     3
-
-#endif
+#endif // IHTTPCLIENT_H

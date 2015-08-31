@@ -21,23 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
-    httpstates.h
-    HTTP parser states
-    Regroup all states present in http parser
+#ifndef HTTPSERVER_GLOBAL_H
+#define HTTPSERVER_GLOBAL_H
 
-    @author Bertrand Martel
-    @version 1.0
-*/
-#ifndef HTTPSTATES_H
-#define HTTPSTATES_H
+#include <QtCore/qglobal.h>
 
-#define HTTP_STATE_INIT     0
-
-#define HTTP_STATE_VERSION  1
-
-#define HTTP_STATE_HEADERS  2
-
-#define HTTP_STATE_BODY     3
-
+#if defined(HTTPSERVER_LIBRARY)
+#  define HTTPSERVERSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define HTTPSERVERSHARED_EXPORT Q_DECL_IMPORT
 #endif
+
+#endif // HTTPSERVER_GLOBAL_H

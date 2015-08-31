@@ -22,22 +22,50 @@
  * THE SOFTWARE.
  */
 /**
-    httpstates.h
-    HTTP parser states
-    Regroup all states present in http parser
+    IClientEventListener.h
+
+    Define all client socket event that can happen and that will pop event in class that will inherit this one
 
     @author Bertrand Martel
     @version 1.0
 */
-#ifndef HTTPSTATES_H
-#define HTTPSTATES_H
+#ifndef ICLIENTEVENTLISTENER_H
+#define ICLIENTEVENTLISTENER_H
 
-#define HTTP_STATE_INIT     0
+#include "IHttpClient.h"
+#include "string"
+#include "protocol/inter/http/IhttpFrame.h"
 
-#define HTTP_STATE_VERSION  1
+/**
+ * @brief The IClientEventListener class
+ *      Client Socket event listener template class
+ */
+class IClientEventListener
+{
 
-#define HTTP_STATE_HEADERS  2
+public :
 
-#define HTTP_STATE_BODY     3
+    /**
+     * called when an http request has been received from client
+     *
+     * @param client
+     * 		client object
+     * @param message
+     * 		message delivered
+     */
+    virtual void onHttpRequestReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address)= 0;
 
-#endif
+    /**
+     * called when an http response has been received from client
+     *
+     * @param client
+     * 		client object
+     * @param message
+     * 		message delivered
+     */
+    virtual void onHttpResponseReceived(IHttpClient &client,Ihttpframe* consumer,std::string peer_address)= 0;
+
+};
+
+
+#endif // ICLIENTEVENTLISTENER_H
