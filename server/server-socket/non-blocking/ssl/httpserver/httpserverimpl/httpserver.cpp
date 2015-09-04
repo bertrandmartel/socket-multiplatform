@@ -66,6 +66,15 @@ HttpServer::HttpServer(QObject* parent): QTcpServer(parent){
 }
 
 /**
+ * @brief HttpServer::set_debug
+ *      activate / desactivate debug
+ * @param use_ssl
+ */
+void HttpServer::set_debug(bool state){
+    debug=state;
+}
+
+/**
  * @brief HttpServer::setSSL
  *      set HTTP server to secured HTTP server
  * @param use_ssl
@@ -363,12 +372,11 @@ void HttpServer::incomingData(){
 
             }
             else{
-                cout << "Current HTTP frame has not been processed correctly." << endl;
+                if (debug)
+                    cout << "Current HTTP frame has not been processed correctly." << endl;
             }
             count--;
         }
-
-        cout << "remaining => " << consumer->getHttpFrameList().size() << endl;
     }
 
     //client socket must be closed
@@ -411,7 +419,8 @@ void HttpServer::addClientEventListener(IClientEventListener *clientListener){
  *      client socket
  */
 void HttpServer::closeClientSocket(QSslSocket* socket){
-    cout << "closing socket..." << endl;
+    if (debug)
+        cout << "closing socket..." << endl;
 
     if (socket->isOpen())
         socket->close();
@@ -419,6 +428,7 @@ void HttpServer::closeClientSocket(QSslSocket* socket){
     //manage unconnected state
     if (socket->state() == QSslSocket::UnconnectedState) {
          delete socket;
-         cout << "Connection closed" << endl;
+        if (debug)
+             cout << "Connection closed" << endl;
     }
 }

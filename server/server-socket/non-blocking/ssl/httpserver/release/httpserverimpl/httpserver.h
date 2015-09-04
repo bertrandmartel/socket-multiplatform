@@ -131,6 +131,13 @@ public:
      */
     bool containsHttpProcessedFrames(std::vector<Ihttpframe*> frameList);
 
+    /**
+     * @brief HttpServer::set_debug
+     *      activate / desactivate debug
+     * @param use_ssl
+     */
+    void set_debug(bool state);
+
 private slots:
 
     /**
