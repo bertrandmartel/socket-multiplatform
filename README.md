@@ -165,7 +165,7 @@ This project will features socket connection implementation on multiple platform
 
 <h3>Description of C++ QT4 Non Blocking HTTP Server socket</h3>
 
-[C++ Non Blocking HTTP Server socket](server/server-socket/non-blocking/cpp/)
+[C++ Non Blocking HTTP Server socket](server/server-socket/non-blocking/)
 
 <hr/>
 
