@@ -85,12 +85,26 @@ int ClientSocket::close()
  * @return
  *		0 if success -1 if error
  */
-int ClientSocket::sendHttpMessage(std::string message)
+void ClientSocket::sendHttpMessage(std::string message)
 {
     clientSocket->write(message.data());
     clientSocket->flush();
+}
 
-    return 0;
+void ClientSocket::writeStringToSocket(std::string message){
+    clientSocket->write(message.data());
+}
+
+void ClientSocket::writeByteArrayToSocket(const QByteArray array){
+    clientSocket->write(array);
+}
+
+void ClientSocket::flush(){
+    clientSocket->flush();
+}
+
+void ClientSocket::writeCharToSocket(char * data,int size){
+    clientSocket->write(data,size);
 }
 
 /**
