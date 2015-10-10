@@ -43,9 +43,7 @@ This exemple is located in server/server-socket/non-blocking/no-ssl/cpp or serve
 * valgrind memcheck
 
 ```
-
 cd ./httpserver-test/release/
-
 valgrind --tool=memcheck --leak-check=full  --suppressions=../../memcheck.suppress  ./httpserver-test
 
 ```
