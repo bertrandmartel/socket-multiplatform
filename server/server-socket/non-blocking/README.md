@@ -36,8 +36,6 @@ This exemple is located in server/server-socket/non-blocking/no-ssl/cpp or serve
 * Launch the HTTP server on port 8443
 * On your browser go to url http://127.0.0.1:8443/index
 
-![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSideHttpCpp.png)
-
 <hr/>
 
 * valgrind memcheck
@@ -47,3 +45,5 @@ cd ./httpserver-test/release/
 valgrind --tool=memcheck --leak-check=full  --suppressions=../../memcheck.suppress  ./httpserver-test
 
 ```
+
+![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSideHttpCpp.png)
