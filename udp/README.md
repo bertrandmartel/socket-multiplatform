@@ -55,7 +55,7 @@ To send a string message use : ``udpClient.sendMessage(String message);`` method
 udpClient.sendMessage("HELLO");
 ```
 
-Mecanism of event listener is exactly the same as explained before for client socket in Java or for Java websocket lib (http://akinaru.github.io/websocket-java/).
+Mecanism of event listener is exactly the same as explained before for client socket in Java or for Java websocket lib (http://bertrandmartel.github.io/websocket-java/).
 
 ``onDataReceived(byte[] data)`` for UDP client callback will enable you to get incoming data response from UDP server.
 
@@ -79,6 +79,6 @@ This exemple is located in udp/ for the class : fr.bmartel.network.LaunchUdpSock
 
 Like all other socket connections lib, event listeners are used to catch data :
 
-![udp communication](https://raw.github.com/akinaru/socket-multiplatform/master/udp_client_to_server_java.png)
+![udp communication](https://raw.github.com/bertrandmartel/socket-multiplatform/master/udp_client_to_server_java.png)
 
 <hr/>

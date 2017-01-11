@@ -194,7 +194,7 @@ public class LaunchClient {
 	 * This will start a server based on Server socket
 	 * 
 	 * For more details about its launch / implementation see
-	 * https://github.com/akinaru/socket-multiplatform
+	 * https://github.com/bertrandmartel/socket-multiplatform
 	 * 
 	 * @param port
 	 *            server port

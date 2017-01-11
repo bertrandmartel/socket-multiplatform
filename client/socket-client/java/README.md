@@ -30,7 +30,7 @@ You can write request to server with ``write(byte[] data)`` method :
 
 ```clientSocket.write("GET /say_hello HTTP/1.1\r\n\r\n".getBytes("UTF-8"));```
 
-You can use http-endec library to build http frame request or response to be sent to the server : http://akinaru.github.io/http-endec-java/
+You can use http-endec library to build http frame request or response to be sent to the server : http://bertrandmartel.github.io/http-endec-java/
 
 The ``write(byte[] data)`` method will automatically connect to the server and send your http frame data direclty. A reading thread will be created on the fly and response from the server will be received there and dispatch to your client event listener, you have declared above.
 
@@ -157,7 +157,7 @@ The following will explain how to generate it from root CA of www.google.fr page
 
 * Go to https://www.google.fr and download root CA cert (export file) :
 
-![udp communication](https://raw.github.com/akinaru/socket-multiplatform/master/cert_google.png)
+![udp communication](https://raw.github.com/bertrandmartel/socket-multiplatform/master/cert_google.png)
 
 * Create a keystore which will store your CA : 
 
@@ -214,6 +214,6 @@ Launch your LaunchClient java exec, it will :
 * build a client socket to be connecte to latter server later
 * ask you a set of command which will match HTTP request to be sent to this server. Each command is mapped in the server and a response is sent back to the client.
 
-![client side](https://raw.github.com/akinaru/socket-multiplatform/master/client_to_server_java.png)
+![client side](https://raw.github.com/bertrandmartel/socket-multiplatform/master/client_to_server_java.png)
 
 <hr/>

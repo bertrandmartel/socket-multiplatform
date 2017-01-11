@@ -1,6 +1,6 @@
 # Multi-platform Socket connections
 
-http://akinaru.github.io/socket-multiplatform
+http://bertrandmartel.github.io/socket-multiplatform
 
 <i>Last update 23/05/2015</i>
 
@@ -17,79 +17,79 @@ This project will features socket connection implementation on multiple platform
         <td colspan="2" rowspan="4">HTTP Server socket</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2" rowspan="8"></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2" rowspan="2">non-blocking</td>
         <td colspan="2">no ssl</td>
         <td colspan="2"></td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
     </tr>
     <tr>
         <td colspan="2" rowspan="4">Server websocket</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2" rowspan="2">non-blocking</td>
         <td colspan="2">no ssl</td>
         <td colspan="2"></td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
         <td colspan="2"></td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
     </tr>
     <tr>
         <td colspan="4" rowspan="2">HTTP Client socket</td>
         <td colspan="2">no ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
-        <td colspan="2" rowspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2" rowspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="4" rowspan="2">Client websocket</td>
         <td colspan="2">no ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
     <tr>
         <td colspan="2">ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
     </tr>
      <tr>
         <td colspan="2" rowspan="4">UDP server</td>
         <td colspan="2" rowspan="2">blocking</td>
         <td colspan="2">no ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
     </tr>
@@ -115,7 +115,7 @@ This project will features socket connection implementation on multiple platform
     <tr>
         <td colspan="4" rowspan="2">UDP Client</td>
         <td colspan="2">no ssl</td>
-        <td colspan="2"><img src="https://raw.github.com/akinaru/socket-multiplatform/master/OK.png"/></td>
+        <td colspan="2"><img src="https://raw.github.com/bertrandmartel/socket-multiplatform/master/OK.png"/></td>
         <td colspan="2"></td>
         <td colspan="2"></td>
     </tr>
@@ -135,13 +135,13 @@ This project will features socket connection implementation on multiple platform
 
 <h3>Description of Java Websocket Server/Client</h3>
 
-[JAVA Websocket server sub-project](http://akinaru.github.io/websocket-java/)
+[JAVA Websocket server sub-project](http://bertrandmartel.github.io/websocket-java/)
 
 <hr/>
 
 <h3>Description of C++ QT4 Non-blocking Websocket Server</h3>
 
-[C++ QT4 Websocket server sub-project](http://akinaru.github.io/websocket-non-blocking-cpp/)
+[C++ QT4 Websocket server sub-project](http://bertrandmartel.github.io/websocket-non-blocking-cpp/)
 
 <hr/>
 

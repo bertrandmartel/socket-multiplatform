@@ -75,7 +75,7 @@ Featured exemple display a message in client's browser when uri /index is called
 * writeHttpResponseFrame(IHttpResponseFrame httpFrame)
 * writeHttpRequestFrame(IHttpFrame httpFrame)
 
-``IHttpResponseFrame`` and ``IHttpFrame`` are interface issued from http-endec-java project in http://akinaru.github.io/http-endec-java/
+``IHttpResponseFrame`` and ``IHttpFrame`` are interface issued from http-endec-java project in http://bertrandmartel.github.io/http-endec-java/
 
 <hr/>
 
@@ -129,7 +129,7 @@ This exemple is located in server/server-socket/blocking/no-ssl/java or server/s
 * Launch the HTTP server on port 8443
 * On your browser go to url http://127.0.0.1:8443/index
 
-![client side](https://raw.github.com/akinaru/socket-multiplatform/master/clientSide.png)
+![client side](https://raw.github.com/bertrandmartel/socket-multiplatform/master/clientSide.png)
 
 <b>COMMAND LINE SYNTAX</b> 
 
